@@ -1,5 +1,6 @@
 ﻿using config.Models;
 
+using System.Reflection;
 using System.Text.Json;
 
 namespace config.Singleton
@@ -8,7 +9,7 @@ namespace config.Singleton
     {
         private static AppSettingsSingleton _instance { get; set; }
 
-        private static string Path = @"./Data/AppSettings.json";
+        private static string Path = $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Data\AppSettings.json";
 
         private List<AppSettingsGroup> AppSettings { get; set; }
 
@@ -26,7 +27,7 @@ namespace config.Singleton
 
         public List<AppSettingsGroup> Lines()
         {
-            var text = File.ReadAllText("D:\\study\\my\\console\\config\\Data\\AppSettings.json");
+            var text = File.ReadAllText(Path);
             AppSettings = JsonSerializer.Deserialize<List<AppSettingsGroup>>(text)!;
 
             return AppSettings;
@@ -35,7 +36,7 @@ namespace config.Singleton
         public void Update(List<AppSettingsGroup> appSettings)
         {
             var json = JsonSerializer.Serialize(appSettings, Options);
-            File.WriteAllText("D:\\study\\my\\console\\config\\Data\\AppSettings.json", json);
+            File.WriteAllText(Path, json);
             AppSettings = appSettings;
         }
     }

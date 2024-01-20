@@ -7,7 +7,7 @@ namespace config.Singleton
 	{
 		private static ConnectionStringsSingleton _instance { get; set; }
 
-		private static string Path = @"./Data/ConnectionStrings.json";
+		private static string Path = @".\Data\ConnectionStrings.json";
 
 		private List<ConnectionLine> ConnectionLines { get; set; }
 
