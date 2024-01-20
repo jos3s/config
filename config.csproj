@@ -14,7 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Messages\UpdateDatabasesMsg.Designer.cs">
+    <Compile Update="Utils\Messages\KeysMsg.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>KeysMsg.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Utils\Messages\UpdateDatabasesMsg.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>UpdateDatabasesMsg.resx</DependentUpon>
@@ -22,7 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Messages\UpdateDatabasesMsg.resx">
+    <EmbeddedResource Update="Utils\Messages\KeysMsg.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>KeysMsg.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Utils\Messages\UpdateDatabasesMsg.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>UpdateDatabasesMsg.Designer.cs</LastGenOutput>
     </EmbeddedResource>
