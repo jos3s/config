@@ -8,11 +8,9 @@ namespace config.Branchs
 	{
 		public static void UseConnectionStringsBranch(this IConfigurator app)
 		{
-			app.AddBranch("connection", create =>
+            app.AddBranch("connection", connection =>
 			{
-				create.SetDescription("Create connection strings");
-				create.AddExample("create","user", "teste.teste", "pass", "abcd", "inst", "risks");
-				create.AddExample("create","user", "teste.teste", "pass", "abcd", "inst", "risks", "-d");
+                connection.SetDescription("Create connection strings or update list of databases");
 
 				create.AddBranch<UserSettings>("user", user =>
 				{
@@ -22,14 +20,14 @@ namespace config.Branchs
 					{
 						password.SetDescription("Set password of connection strings");
 
-						password.AddBranch<InstanceSettings>("inst", instance =>
+                connection.AddBranch("database", con =>
 						{
-							instance.SetDescription("Set instance of connection strings");
+                    con.SetDescription("Insert new database in the list of databases");
 
-							instance.AddCommand<ConfigConnectionStringsCommand>("config")
-								.WithDescription("Create connection strings for config files");
-							instance.AddCommand<JsonConnectionStringsCommand>("json")
-								.WithDescription("Create connection strings for json files");
+                    con.AddCommand<CreateDatabaseCommand>("add")
+                        .WithDescription("Create new database in the list of databases")
+                        .WithExample("connection","database");
+                });
 						})
 						.WithAlias("i");
 					})
