@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "config": {
+      "commandName": "Project",
+      "commandLineArgs": "appsettings key\r\n"
+    }
+  }
+}

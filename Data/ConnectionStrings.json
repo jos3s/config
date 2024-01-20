@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Teste.Abc",
+    "providerName": "System.Data.SqlClient",
+    "connectionString": {
+      "initalCatalog": "b",
+      "pooling": "True",
+      "connectionTimeout": 180,
+      "aplicationName": "c",
+      "encrypt": "True"
+    }
+  }
+]
