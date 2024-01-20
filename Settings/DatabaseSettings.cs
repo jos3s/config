@@ -5,13 +5,13 @@ namespace config.Settings
 {
 	internal class DatabaseSettings : CommandSettings
 	{
-		[CommandArgument(0, "[NAME]")]
+		[CommandArgument(0, "<name>")]
 		public string Name { get; set; }
 
-		[CommandArgument(0, "[CATALOG]")]
+		[CommandArgument(1, "<catalog>")]
 		public string Catalog { get; set; }
 
-		[CommandArgument(0, "[APPNAME]")]
+		[CommandArgument(2, "<appname>")]
 		public string AplicationName { get; set; }
 
 		[CommandOption("-t|--timeout")]
@@ -21,7 +21,6 @@ namespace config.Settings
 		public string ProviderName { get; set; } = "System.Data.SqlClient";
 		public string Pooling { get; set; } = "True";
 		public string Encrypt { get; set; } = "True";
-
 
 	}
 }
