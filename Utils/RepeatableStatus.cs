@@ -1,5 +1,4 @@
-﻿using config.Messages;
-
+﻿using config.Models.DTOs;
 using Spectre.Console;
 
 namespace config.Utils;
@@ -25,5 +24,24 @@ internal class RepeatableStatus
             });
 
         return 0;
+    }
+
+    public static void Run(RepeatableStatusMsg msgs, int count, int sleep = 1000)
+    {
+        AnsiConsole.Status()
+            .Start(msgs.InitalMsg, ctx =>
+            {
+                Thread.Sleep(sleep);
+
+                for (int i = 0; i < count; i++)
+                {
+                    ctx.Status(msgs.RepeatableMsg);
+                    ctx.Spinner(Spinner.Known.Dots);
+                    ctx.SpinnerStyle(Style.Parse("green"));
+                    Thread.Sleep(sleep);
+                }
+
+                AnsiConsole.MarkupLine($"[green]{msgs.FinalMsg}[/]");
+            });
     }
 }
