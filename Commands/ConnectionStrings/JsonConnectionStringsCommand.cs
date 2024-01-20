@@ -5,9 +5,9 @@ using config.Utils;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-internal class JsonConnectionStringsCommand : Command<ConnectionSettings>
+internal class JsonConnectionStringsCommand : Command<OptionConnectionStringsSettings>
 {
-	public override int Execute(CommandContext context, ConnectionSettings settings)
+	public override int Execute(CommandContext context, OptionConnectionStringsSettings settings)
 	{
 		try
 		{
