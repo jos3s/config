@@ -9,7 +9,14 @@ internal static class AppSettingsBranch
     {
         app.AddBranch("appsettings", app =>
         {
-            app.AddCommand<GetKeysCommand>("key");
+            app.SetDescription("Create, Read, Update values os AppSettings");
+
+            app.AddCommand<GetKeysCommand>("generate")
+                .WithDescription("Generate list of keys")
+                .WithExample("appsettings", "generate")
+                .WithExample("appsettings", "generate","-s")
+                .WithExample("appsettings", "generate","-j")
+                .WithExample("appsettings", "generate","-s","-j");
         });
     }
 }
