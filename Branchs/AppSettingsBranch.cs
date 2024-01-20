@@ -8,7 +8,7 @@ internal static class AppSettingsBranch
     {
         app.AddBranch("appsettings", app =>
         {
-            app.SetDescription("Create, Read, Update values os AppSettings");
+            app.SetDescription("Create, Generate or Update values os AppSettings");
 
             app.AddCommand<GetKeysCommand>("generate")
                 .WithDescription("Generate list of keys")
