@@ -7,7 +7,6 @@ var app = new CommandApp();
 app.Configure(config =>
 {
 	config.UseConnectionStringsBranch();
-	config.UseDatabasesInstancesBranch();
 	config.UseAppSettingsBranch();
 });
 
