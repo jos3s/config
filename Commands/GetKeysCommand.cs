@@ -4,6 +4,7 @@ using config.Models;
 using config.Models.DTOs;
 using config.Settings;
 using config.Singleton;
+using config.Utils;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -12,24 +13,40 @@ internal class GetKeysCommand : Command<AppSettingsSettings>
 {
     public override int Execute(CommandContext context, AppSettingsSettings settings)
     {
-        var lines = AppSettingsSingleton.Instance.Lines();
+        var appSettingsFile = AppSettingsSingleton.Instance.Lines();
 
-        var groups = CreateGroupMultiSelectionDTO(lines);
 
-        var multiSelection = new MultiSelectionPrompt<string>()
-            .Title("Select [green]keys[/]:")
-            .Required()
-            .PageSize(10)
-            .InstructionsText("[grey](Press [blue]<space>[/] to toggle a database, " +
-                              "[green]<enter>[/] to accept)[/]");
+        var groupsMultiSelection = CreateGroupMultiSelectionDTO(appSettingsFile);
 
-        foreach (var group in groups)
+        var appSettingsList = groupsMultiSelection
+            .Select(x=> x.Options)
+            .SelectMany(i => i);
+
+        if (settings.SelectKeys)
         {
-            multiSelection.AddChoiceGroup(group.Name, group.Options);
+            var multiSelection = new MultiSelectionPrompt<string>()
+                .Title("Select [green]keys[/]:")
+                .Required()
+                .PageSize(10)
+                .InstructionsText("[grey](Press [blue]<space>[/] to toggle a database, " +
+                                  "[green]<enter>[/] to accept)[/]");
+
+            foreach (var group in groupsMultiSelection)
+            {
+                multiSelection.AddChoiceGroup(group.Name, group.Options);
+            }
+
+
+            appSettingsList = AnsiConsole.Prompt(multiSelection);
         }
 
-        var dataBases = AnsiConsole.Prompt(multiSelection);
-        Lists(lines, dataBases);
+
+        var strings = Lists(appSettingsFile, appSettingsList, settings.Json);
+
+        RepeatableStatus.Run(strings,
+            "Collecting app keys...",
+            "Creating new key...",
+            "App keys successfully created...");
 
         return 0;
     }
@@ -56,9 +73,10 @@ internal class GetKeysCommand : Command<AppSettingsSettings>
         return dto;
     }
 
-
-    private void Lists(object appSettings, List<string> keys)
+    private List<string> Lists(object appSettings, IEnumerable<string> keys, bool json)
     {
+        var output = new List<string>();
+
         foreach (PropertyInfo propertyInfo in appSettings.GetType().GetProperties())
         {
 
@@ -70,10 +88,12 @@ internal class GetKeysCommand : Command<AppSettingsSettings>
             {
                 if (keys.Contains(propert.Key))
                 {
-                    AnsiConsole.WriteLine(propert.ToString());
+                    output.Add(!json ? propert.ToConfig() : propert.ToJson());
                 }
             }
 
         }
+
+        return output;
     }
 }
