@@ -9,7 +9,7 @@ namespace config.Singleton
     {
         private static AppSettingsSingleton _instance { get; set; }
 
-        private static string Path = $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\Data\AppSettings.json";
+        private static string Path = $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\AppData\AppSettings.json";
 
         private List<AppSettingsGroup> AppSettings { get; set; }
 
