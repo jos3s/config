@@ -1,5 +1,4 @@
-﻿using config.Commands;
-
+﻿using config.Commands.AppSettings;
 using Spectre.Console.Cli;
 
 namespace config.Branchs;
@@ -17,6 +16,12 @@ internal static class AppSettingsBranch
                 .WithExample("appsettings", "generate","-s")
                 .WithExample("appsettings", "generate","-j")
                 .WithExample("appsettings", "generate","-s","-j");
+
+            app.AddCommand<CreateKeyCommand>("create")
+                .WithDescription("Create new key");
+
+            app.AddCommand<UpdateKeysCommand>("update")
+                .WithDescription("Update value of key");
         });
     }
 }
