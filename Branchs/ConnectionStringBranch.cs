@@ -1,5 +1,4 @@
 ﻿using config.Commands.ConnectionStrings;
-using config.Settings.ConnectionStrings;
 
 using Spectre.Console.Cli;
 
