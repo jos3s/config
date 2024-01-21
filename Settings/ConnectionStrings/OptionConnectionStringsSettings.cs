@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace config.Settings.ConnectionStrings;
 internal class OptionConnectionStringsSettings : ConnectionSettings
 {
-    [CommandOption("-d|--databases")]
+    [CommandOption("-s|--select")]
     [DefaultValue(false)]
     [Description("Select which database connection string will be generated for")]
     public bool SelectDatabases { get; set; }
