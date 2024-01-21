@@ -20,6 +20,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Compile Update="Utils\Messages\ConnectionStringsMsg.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ConnectionStringsMsg.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Utils\Messages\KeysMsg.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
@@ -33,6 +38,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Update="Utils\Messages\ConnectionStringsMsg.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ConnectionStringsMsg.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Utils\Messages\KeysMsg.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>KeysMsg.Designer.cs</LastGenOutput>

@@ -13,7 +13,7 @@ namespace config.Branchs
             {
                 connection.SetDescription("Create connection strings or update list of databases");
 
-                connection.AddCommand<ConnectionStringsCommand>("generate")
+                connection.AddCommand<GenerateConnectionStringsCommand>("generate")
                     .WithDescription("Generate connection strings")
                     .WithExample("connection", "generate", "teste.teste", "abcd", "risks")
                     .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "-d")
