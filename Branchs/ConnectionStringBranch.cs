@@ -1,5 +1,4 @@
 ﻿using config.Commands.ConnectionStrings;
-using config.Settings.ConnectionStrings;
 
 using Spectre.Console.Cli;
 
@@ -13,22 +12,13 @@ namespace config.Branchs
             {
                 connection.SetDescription("Create connection strings or update list of databases");
 
-                connection.AddBranch<ConnectionSettings>("generate",con =>
-                {
-                    con.SetDescription("Generate connection strings");
-
-                    con.AddCommand<ConfigConnectionStringsCommand>("config")
-                        .WithDescription("Create connection strings for config files")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config", "-d")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config", "-d","--display");
-
-                    con.AddCommand<JsonConnectionStringsCommand>("json")
-                        .WithDescription("Create connection strings for json files")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json", "-d")
-                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json", "--display", "-d");
-                });
+                connection.AddCommand<GenerateConnectionStringsCommand>("generate")
+                    .WithDescription("Generate connection strings")
+                    .WithExample("connection", "generate", "teste.teste", "abcd", "risks")
+                    .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "-d")
+                    .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "-j", "-d")
+                    .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "-d", "--display")
+                    .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "-j", "-d", "--display"); 
 
                 connection.AddBranch("database", con =>
                 {

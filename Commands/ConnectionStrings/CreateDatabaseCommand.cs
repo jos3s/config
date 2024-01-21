@@ -2,7 +2,6 @@
 using config.Settings;
 using config.Singleton;
 using config.Utils.Messages;
-
 using Spectre.Console;
 using Spectre.Console.Cli;
 
