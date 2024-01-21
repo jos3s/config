@@ -122,5 +122,23 @@ namespace config.Utils.Messages {
                 return ResourceManager.GetString("INF007", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a App key removed with success....
+        /// </summary>
+        internal static string INF008 {
+            get {
+                return ResourceManager.GetString("INF008", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Removing app key....
+        /// </summary>
+        internal static string INF009 {
+            get {
+                return ResourceManager.GetString("INF009", resourceCulture);
+            }
+        }
     }
 }
