@@ -1,13 +1,18 @@
 # Config
 
- > Esse programa È um CLI, um Command Line Interface, um programa que roda pelo terminal exclusivamente pelo terminal.
+![terminal_config](https://github.com/jos3s/config/assets/50359547/6760e72b-da75-4031-b757-dcd7c977816a)
 
-O programa foi desenvolvido com o objetivo de testar a biblioteca Spectre.Console e implementar uma soluÁ„o que permita uma geraÁ„o f·cil de valores de configuraÁıes para aplicaÁıes .Net, gerando connection strings e app settings.
+
+ > Esse programa √© um CLI, um Command Line Interface, um programa que roda pelo terminal exclusivamente pelo terminal.
+
+O programa foi desenvolvido com o objetivo de testar a biblioteca Spectre.Console e implementar uma solu√ß√£o que permita uma gera√ß√£o f√°cil de valores de configura√ß√µes para aplica√ß√µes .Net, gerando connection strings e app settings.
+
+[Fluxograma](https://whimsical.com/config-QzuczAkYwvMGxJNp51M9wP@2Ux7TurymPMGw9Aqv1H4)
 
 ## Tecnologias
 
 - .Net 7
-- Spectre.Console 
+- [Spectre.Console](https://spectreconsole.net)
 
 ## Como Usar
 
@@ -20,7 +25,7 @@ git clone https://github.com/jos3s/config.git
 
 ```
 
-Abra a pasta do projeto e execute o comando no terminal para executar o pograma e exibir a documentaÁ„o.
+Abra a pasta do projeto e execute o comando no terminal para executar o pograma e exibir a documenta√ß√£o.
 
 ```bash
 dotnet run --property WarningLevel=0 -- -h
