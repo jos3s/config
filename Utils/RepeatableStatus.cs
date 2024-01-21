@@ -4,7 +4,7 @@ using Spectre.Console;
 namespace config.Utils;
 internal class RepeatableStatus
 {
-    public static int Run(List<string> strings, string initialMsg,string repeatableMsg, string finalMsg, int sleep = 1000)
+    public static int Run(IEnumerable<string> strings, string initialMsg,string repeatableMsg, string finalMsg, int sleep = 1000)
     {
         AnsiConsole.Status()
             .Start(initialMsg, ctx =>

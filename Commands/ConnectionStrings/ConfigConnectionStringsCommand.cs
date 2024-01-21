@@ -6,9 +6,9 @@ using Spectre.Console.Cli;
 
 namespace config.Commands.ConnectionStrings
 {
-    internal class ConfigConnectionStringsCommand : Command<ConnectionSettings>
+    internal class ConfigConnectionStringsCommand : Command<OptionConnectionStringsSettings>
     {
-        public override int Execute(CommandContext context, ConnectionSettings settings)
+        public override int Execute(CommandContext context, OptionConnectionStringsSettings settings)
         {
             try
             {

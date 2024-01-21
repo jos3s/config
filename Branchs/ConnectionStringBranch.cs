@@ -1,42 +1,44 @@
 ﻿using config.Commands.ConnectionStrings;
 using config.Settings.ConnectionStrings;
+
 using Spectre.Console.Cli;
 
 namespace config.Branchs
 {
-    internal static class ConnectionStringsBranch 
-	{
-		public static void UseConnectionStringsBranch(this IConfigurator app)
-		{
-			app.AddBranch("connection", create =>
-			{
-				create.SetDescription("Create connection strings");
-				create.AddExample("create","user", "teste.teste", "pass", "abcd", "inst", "risks");
-				create.AddExample("create","user", "teste.teste", "pass", "abcd", "inst", "risks", "-d");
+    internal static class ConnectionStringsBranch
+    {
+        public static void UseConnectionStringsBranch(this IConfigurator app)
+        {
+            app.AddBranch("connection", connection =>
+            {
+                connection.SetDescription("Create connection strings or update list of databases");
 
-				create.AddBranch<UserSettings>("user", user =>
-				{
-					user.SetDescription("Set user of connection strings");
+                connection.AddBranch<ConnectionSettings>("generate",con =>
+                {
+                    con.SetDescription("Generate connection strings");
 
-					user.AddBranch<PasswordSettings>("pass", password =>
-					{
-						password.SetDescription("Set password of connection strings");
+                    con.AddCommand<ConfigConnectionStringsCommand>("config")
+                        .WithDescription("Create connection strings for config files")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config", "-d")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "config", "-d","--display");
 
-						password.AddBranch<InstanceSettings>("inst", instance =>
-						{
-							instance.SetDescription("Set instance of connection strings");
+                    con.AddCommand<JsonConnectionStringsCommand>("json")
+                        .WithDescription("Create connection strings for json files")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json", "-d")
+                        .WithExample("connection", "generate", "teste.teste", "abcd", "risks", "json", "--display", "-d");
+                });
 
-							instance.AddCommand<ConfigConnectionStringsCommand>("config")
-								.WithDescription("Create connection strings for config files");
-							instance.AddCommand<JsonConnectionStringsCommand>("json")
-								.WithDescription("Create connection strings for json files");
-						})
-						.WithAlias("i");
-					})
-					.WithAlias("p");
-				})
-				.WithAlias("u");
-			});
-		}
-	}
+                connection.AddBranch("database", con =>
+                {
+                    con.SetDescription("Insert new database in the list of databases");
+
+                    con.AddCommand<CreateDatabaseCommand>("add")
+                        .WithDescription("Create new database in the list of databases")
+                        .WithExample("connection","database");
+                });
+            });
+        }
+    }
 }

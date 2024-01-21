@@ -2,7 +2,7 @@
 using Spectre.Console.Cli;
 
 namespace config.Settings.AppSettings;
-internal class GetKeysSettings : CommandSettings
+internal class GenereateKeysSettings : CommandSettings
 {
     [CommandOption("-s|--select")]
     [DefaultValue(false)]
@@ -13,4 +13,9 @@ internal class GetKeysSettings : CommandSettings
     [DefaultValue(false)]
     [Description("Generate keys for json file")] 
     public bool Json { get; set; }
+
+    [CommandOption("--display")]
+    [DefaultValue(false)]
+    [Description("Display each line in turn")]
+    public bool DisplayPerLines { get; set; }
 }

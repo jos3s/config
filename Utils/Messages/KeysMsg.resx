@@ -132,7 +132,10 @@
   <data name="INF005" xml:space="preserve">
     <value>Updating app keys...</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="INF006" xml:space="preserve">
+    <value>App keys successfully generated...</value>
+  </data>
+  <data name="INF007" xml:space="preserve">
+    <value>Generating key...</value>
   </data>
 </root>
