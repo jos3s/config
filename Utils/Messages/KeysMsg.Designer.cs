@@ -106,11 +106,20 @@ namespace config.Utils.Messages {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a .
+        ///   Consulta uma cadeia de caracteres localizada semelhante a App keys successfully generated....
         /// </summary>
-        internal static string String1 {
+        internal static string INF006 {
             get {
-                return ResourceManager.GetString("String1", resourceCulture);
+                return ResourceManager.GetString("INF006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Generating key....
+        /// </summary>
+        internal static string INF007 {
+            get {
+                return ResourceManager.GetString("INF007", resourceCulture);
             }
         }
     }

@@ -10,7 +10,7 @@ internal static class AppSettingsBranch
         {
             app.SetDescription("Create, Generate or Update values os AppSettings");
 
-            app.AddCommand<GetKeysCommand>("generate")
+            app.AddCommand<GenerateKeysCommand>("generate")
                 .WithDescription("Generate list of keys")
                 .WithExample("appsettings", "generate")
                 .WithExample("appsettings", "generate","-s")
