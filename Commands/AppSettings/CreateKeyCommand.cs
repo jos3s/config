@@ -2,6 +2,7 @@
 using config.Models.DTOs;
 using config.Settings.AppSettings;
 using config.Singleton;
+using config.Transaction;
 using config.Utils;
 using config.Utils.Messages;
 
@@ -23,17 +24,9 @@ internal class CreateKeyCommand : Command<CreateKeySettings>
                 Value = settings.KeyValue
             };
 
-            var groups = appSettings.Select(x => x.GroupName);
-
-            if (groups.Contains(settings.GroupName))
-            {
-                foreach (var group in appSettings)
-                {
-                    if (settings.GroupName.Equals(group.GroupName, StringComparison.InvariantCultureIgnoreCase))
-                        group.Keys.Add(newKey);
-                }
-            }
-            else
+            var group = AppSettingsTRA.GetGroupByName(appSettings, settings.GroupName);
+            
+            if (group == null)
             {
                 var newGroup = new AppSettingsGroup
                 {
@@ -41,6 +34,10 @@ internal class CreateKeyCommand : Command<CreateKeySettings>
                     Keys = new List<AppKey> { newKey },
                 };
                 appSettings.Add(newGroup);
+            }
+            else
+            {
+                group.Keys.Add(newKey);
             }
 
             AppSettingsSingleton.Instance.Update(appSettings);

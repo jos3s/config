@@ -1,6 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 
 namespace config.Models;
+
 internal class AppSettingsGroup
 {
     [JsonPropertyName("group")]

@@ -16,7 +16,7 @@ namespace config.Commands.ConnectionStrings
 
                 if (settings.SelectDatabases)
                 {
-                    var databases = DatabaseMultiSelect.Execute();
+                    var databases = MultiSelect.Execute();
 
                     if (databases?.Count > 0)
                         list = ConnectionStringsSingleton.Instance.Lines().Where(connection => databases.Contains(connection.Name)).ToList();

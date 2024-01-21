@@ -2,9 +2,9 @@
 using config.Models.DTOs;
 using config.Settings.AppSettings;
 using config.Singleton;
+using config.Transaction;
 using config.Utils;
 using config.Utils.Messages;
-
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -13,71 +13,51 @@ internal class UpdateKeysCommand : Command<UpdateKeySettings>
 {
     public override int Execute(CommandContext context, UpdateKeySettings settings)
     {
-        var appSettingsFile = AppSettingsSingleton.Instance.Lines();
+        var appSettings = AppSettingsSingleton.Instance.Lines();
 
-        var groupsMultiSelection = CreateGroupMultiSelectionDTO(appSettingsFile);
+        var groupSelected = GetGroup(appSettings);
 
-        var keySelected = Selection(groupsMultiSelection);
+        var keySelectedString = GetKeyName(groupSelected);
 
-        var newValue = AnsiConsole.Ask<string>($"What will the new key [blue]{keySelected}[/] value be?");
+        SetNewKeyValue(keySelectedString, groupSelected);
 
-
-        foreach (var group in appSettingsFile)
-        {
-            foreach (var key in group.Keys)
-            {
-                if (key.Key.Equals(keySelected, StringComparison.InvariantCultureIgnoreCase))
-                    key.Value = newValue;
-            }
-        }
-
-        AppSettingsSingleton.Instance.Update(appSettingsFile);
-
+        AppSettingsSingleton.Instance.Update(appSettings);
 
         RepeatableStatus.Run(new RepeatableStatusMsg()
         {
             InitalMsg = KeysMsg.INF001,
             FinalMsg = KeysMsg.INF004,
             RepeatableMsg = KeysMsg.INF005
-        }, appSettingsFile.Count);
+        }, appSettings.Count);
 
         return 0;
     }
 
-    private static string Selection(List<GroupMultiSelectionDTO> groupsMultiSelection)
+    private static void SetNewKeyValue(string keySelectedString, AppSettingsGroup groupSelected)
     {
+        var newValue = AnsiConsole.Ask<string>($"What will the new key [blue]{keySelectedString}[/] value be?");
 
-        var multiSelection = new SelectionPrompt<string>()
-            .Title("Select [green]keys[/]:")
-            .PageSize(10)
-            .MoreChoicesText("[grey](Move up and down to reveal more keys)[/]");
+        var keySelected = AppSettingsTRA.GetKeyByGroupAndKeyName(groupSelected, keySelectedString);
 
-        foreach (var group in groupsMultiSelection)
-        {
-            multiSelection.AddChoiceGroup(group.Name, group.Options);
-        }
-
-
-        return AnsiConsole.Prompt(multiSelection);
+        keySelected.Value = newValue;
     }
 
-    private List<GroupMultiSelectionDTO> CreateGroupMultiSelectionDTO(List<AppSettingsGroup> appSettings)
+    private static string GetKeyName(AppSettingsGroup groupSelected)
     {
-        var dto = new List<GroupMultiSelectionDTO>();
+        var keys = AppSettingsTRA.GetOptions(groupSelected);
 
-        foreach (var appSettingsGroup in appSettings)
-        {
-            var group = new GroupMultiSelectionDTO() { Name = appSettingsGroup.GroupName };
-
-            foreach (var appKey in appSettingsGroup.Keys)
-            {
-                group.Options.Add(appKey.Key);
-            }
-
-            dto.Add(group);
-        }
-
-        return dto;
+        var keySelectedString = SelectionDisplay.Selection(keys, "key");
+        return keySelectedString;
     }
 
+    private static AppSettingsGroup GetGroup(IEnumerable<AppSettingsGroup> appSettings)
+    {
+        var groups = AppSettingsTRA.GetGroupsName(appSettings);
+
+        var groupSelectedName = SelectionDisplay.Selection(groups, "group");
+
+        var groupSelected = AppSettingsTRA.GetGroupByName(appSettings, groupSelectedName);
+
+        return groupSelected;
+    }
 }
