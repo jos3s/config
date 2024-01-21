@@ -1,5 +1,6 @@
 ﻿namespace config.Models.DTOs;
-internal class GroupMultiSelectionDTO
+
+public class GroupSelectionDTO
 {
     public string Name { get; set; }
 

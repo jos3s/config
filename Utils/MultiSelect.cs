@@ -1,9 +1,10 @@
 ﻿using config.Singleton;
+
 using Spectre.Console;
 
 namespace config.Utils
 {
-	public class DatabaseMultiSelect
+    internal class MultiSelect
 	{
 		public static List<string> Execute()
 		{
@@ -27,5 +28,5 @@ namespace config.Utils
 				throw;
 			}
 		}
-	}
+    }
 }

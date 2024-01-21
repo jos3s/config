@@ -14,7 +14,7 @@ internal class JsonConnectionStringsCommand : Command<OptionConnectionStringsSet
 			var list = ConnectionStringsSingleton.Instance.Lines();
 			if ((bool)settings.SelectDatabases)
 			{
-				var databases = DatabaseMultiSelect.Execute();
+				var databases = MultiSelect.Execute();
 
 				if (databases?.Count > 0)
 					list = ConnectionStringsSingleton.Instance.Lines().Where(connection => databases.Contains(connection.Name)).ToList();

@@ -138,4 +138,10 @@
   <data name="INF007" xml:space="preserve">
     <value>Generating key...</value>
   </data>
+  <data name="INF008" xml:space="preserve">
+    <value>App key removed with success...</value>
+  </data>
+  <data name="INF009" xml:space="preserve">
+    <value>Removing app key...</value>
+  </data>
 </root>
