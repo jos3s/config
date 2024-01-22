@@ -58,12 +58,15 @@ internal class GenerateKeysCommand : Command<GenereateKeysSettings>
 
     private IEnumerable<string> CreateListResult(List<AppSettingsGroup> appSettings, IEnumerable<string> keys, bool json)
     {
-        var output = appSettings
-            .SelectMany(appSetting =>
-                appSetting.Keys
-                    .Select(x =>!json 
-                            ? x.ToConfig() 
-                            : x.ToJson()));
+        var output = new List<string>();
+
+        foreach (var appSettingsGroup in appSettings)
+        {
+            foreach (var key in appSettingsGroup.Keys)
+            {
+                if(keys.Contains(key.Key)) output.Add(!json ? key.ToConfig() : key.ToJson());
+            }
+        }
 
         return output;
     }
