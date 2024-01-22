@@ -61,20 +61,38 @@ namespace config.Utils.Messages {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;add key=&quot;{1}&quot; value=&quot;{1}&quot;/&gt;.
+        /// </summary>
+        internal static string APPCONFIG {
+            get {
+                return ResourceManager.GetString("APPCONFIG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &quot;{0}&quot;:{1}.
+        /// </summary>
+        internal static string APPJSON {
+            get {
+                return ResourceManager.GetString("APPJSON", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;add name=&quot;{0}&quot; providerName=&quot;{1}&quot; connectionString=&quot;Data Source={2};Initial Catalog={3};User Id={4}; Password={5};Pooling={6};Connect Timeout={7};Aplication Name={8}&quot;/&gt;.
         /// </summary>
-        internal static string CONFIG {
+        internal static string CONNCONFIG {
             get {
-                return ResourceManager.GetString("CONFIG", resourceCulture);
+                return ResourceManager.GetString("CONNCONFIG", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a &quot;{0}&quot;:&quot;Data Source={1};Initial Catalog={2};User ID={3};Password={4};Pooling={5};Connect Timeout={6};Application Name={7}&quot;.
         /// </summary>
-        internal static string JSON {
+        internal static string CONNJSON {
             get {
-                return ResourceManager.GetString("JSON", resourceCulture);
+                return ResourceManager.GetString("CONNJSON", resourceCulture);
             }
         }
     }
