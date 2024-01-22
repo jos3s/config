@@ -1,11 +1,11 @@
 ﻿using config.Models;
 using System.Text;
 
-namespace config.Utils
+namespace config.Utils.Mapper
 {
-    internal class CreateLine
+    internal class ConnectionLineMapper
 	{
-		public static string Config(IEnumerable<ConnectionLine> connectionLines, string user, string password, string instance)
+		public static string ToConfig(IEnumerable<ConnectionLine> connectionLines, string user, string password, string instance)
 		{
 			StringBuilder stringBuilder = new();
 
@@ -15,13 +15,13 @@ namespace config.Utils
 
 			foreach (var connectionLine in connectionLines)
             {
-                stringBuilder.AppendLine(ConfigLine(connectionLine, instanceString, userIdString, passwordString));
+                stringBuilder.AppendLine(ToConfigLine(connectionLine, instanceString, userIdString, passwordString));
             }
 
 			return stringBuilder.ToString();
 		}
 
-        public static string ConfigLine(ConnectionLine connectionLine, string instanceString, string userIdString, string passwordString)
+        public static string ToConfigLine(ConnectionLine connectionLine, string instanceString, string userIdString, string passwordString)
         {
             StringBuilder stringBuilder = new();
             stringBuilder.Append("<add ");
@@ -43,7 +43,7 @@ namespace config.Utils
 			return stringBuilder.ToString();
         }
 
-        public static string Json(IEnumerable<ConnectionLine> connectionLines, string user, string password, string instance)
+        public static string ToJson(IEnumerable<ConnectionLine> connectionLines, string user, string password, string instance)
 		{
 
 			var instanceString = $"Data Source={instance};";
@@ -54,13 +54,13 @@ namespace config.Utils
 
 			foreach (var connectionLine in connectionLines)
 			{
-                stringBuilder.AppendLine(JsonLine(connectionLine, instanceString, userIdString, passwordString));
+                stringBuilder.AppendLine(ToJsonLine(connectionLine, instanceString, userIdString, passwordString));
             }
 
 			return stringBuilder.ToString();
 		}
 
-        public static string JsonLine(ConnectionLine connectionLine, string instanceString, string userIdString, string passwordString)
+        public static string ToJsonLine(ConnectionLine connectionLine, string instanceString, string userIdString, string passwordString)
         {
             StringBuilder stringBuilder = new();
             stringBuilder.Append($"\"{connectionLine.Name}\":");

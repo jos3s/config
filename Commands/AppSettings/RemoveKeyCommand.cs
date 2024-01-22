@@ -2,9 +2,8 @@
 using config.Settings.AppSettings;
 using config.Singleton;
 using config.Transaction;
-using config.Utils;
+using config.Utils.Display;
 using config.Utils.Messages;
-
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -32,7 +31,7 @@ internal class RemoveKeyCommand : Command<RemoveKeySettings>
         {
             groupSelected.Keys.Remove(keySelected);
             AppSettingsSingleton.Instance.Update(appSettings);
-            RepeatableStatus.Run(new RepeatableStatusMsg
+            RepeatableStatusDisplay.Run(new RepeatableStatusMsg
             {
                 InitalMsg = KeysMsg.INF001,
                 RepeatableMsg = KeysMsg.INF009,

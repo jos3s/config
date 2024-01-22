@@ -3,9 +3,8 @@ using config.Models.DTOs;
 using config.Settings.AppSettings;
 using config.Singleton;
 using config.Transaction;
-using config.Utils;
+using config.Utils.Display;
 using config.Utils.Messages;
-
 using Spectre.Console.Cli;
 
 namespace config.Commands.AppSettings;
@@ -42,7 +41,7 @@ internal class CreateKeyCommand : Command<CreateKeySettings>
 
             AppSettingsSingleton.Instance.Update(appSettings);
 
-            RepeatableStatus.Run(new RepeatableStatusMsg
+            RepeatableStatusDisplay.Run(new RepeatableStatusMsg
             {
                 InitalMsg = KeysMsg.INF001,
                 FinalMsg = KeysMsg.INF003,
