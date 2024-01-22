@@ -28,7 +28,7 @@ namespace config.Utils.Mapper
         {
             StringBuilder stringBuilder = new();
 
-            stringBuilder.AppendLine(string.Format(StringsFormatedMsg.CONFIG,
+            stringBuilder.AppendLine(string.Format(StringsFormatedMsg.CONNCONFIG,
                 connectionLine.Name,
                 connectionLine.ProviderName,
                 instanceString,
@@ -64,7 +64,7 @@ namespace config.Utils.Mapper
         {
             StringBuilder stringBuilder = new();
 
-            stringBuilder.Append(string.Format(StringsFormatedMsg.JSON,
+            stringBuilder.Append(string.Format(StringsFormatedMsg.CONNJSON,
                 connectionLine.Name,
                 instanceString,
                 connectionLine.ConnectionString.InitalCatalog,
