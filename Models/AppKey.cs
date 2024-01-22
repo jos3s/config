@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using config.Utils.Messages;
 
 namespace config.Models;
 internal class AppKey
@@ -11,9 +12,7 @@ internal class AppKey
 
     public string ToConfig()
     {
-        string output = $"<add key=\"{Key}\" value=\"{Value}\"/>";
-
-        return output;
+       return string.Format(StringsFormatedMsg.APPCONFIG, Key, Value);
     }
 
     public string ToJson()
@@ -25,11 +24,13 @@ internal class AppKey
         string output = $"\"{Key}\":";
 
         if (Value.Equals(intValue.ToString()))
-            output += $"{intValue}";
+            output = string.Format(StringsFormatedMsg.APPJSON, Key, intValue);
         else if (Value.Equals(boolValue.ToString(), StringComparison.InvariantCultureIgnoreCase))
-            output += $"{boolValue}";
+            output = string.Format(StringsFormatedMsg.APPJSON, Key, boolValue);
         else if (Value.Equals(floatValue.ToString()))
-            output += $"{floatValue}";
+            output = string.Format(StringsFormatedMsg.APPJSON, Key, floatValue);
+        else 
+            output = string.Format(StringsFormatedMsg.APPJSON, Key, $"\"{Value}\"");
 
         return output;
     }
