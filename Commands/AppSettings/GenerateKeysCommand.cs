@@ -1,7 +1,7 @@
 ﻿using config.Models;
 using config.Settings.AppSettings;
 using config.Singleton;
-using config.Utils;
+using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -24,7 +24,7 @@ internal class GenerateKeysCommand : Command<GenereateKeysSettings>
 
         if (settings.DisplayPerLines)
         {
-            RepeatableStatus.Run(strings,
+            RepeatableStatusDisplay.Run(strings,
                 KeysMsg.INF001,
                 KeysMsg.INF007,
                 KeysMsg.INF006);

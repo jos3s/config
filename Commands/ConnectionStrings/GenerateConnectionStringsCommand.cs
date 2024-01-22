@@ -1,7 +1,8 @@
 ﻿using config.Settings.ConnectionStrings;
 using config.Singleton;
 using config.Transaction;
-using config.Utils;
+using config.Utils.Display;
+using config.Utils.Mapper;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -26,12 +27,12 @@ namespace config.Commands.ConnectionStrings
                 var databasesSelected = ConnectionLinesTRA.GetConnectionLinesByNames(databasesNames, databases);
 
                  var output = !settings.JsonFormat 
-                    ? CreateLine.Config(databasesSelected, settings.User, settings.Password, settings.Instance) 
-                    : CreateLine.Json(databasesSelected, settings.User, settings.Password, settings.Instance);
+                    ? ConnectionLineMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance) 
+                    : ConnectionLineMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
 
                 if (settings.DisplayStatus)
                 {
-                    RepeatableStatus.Run(output.Split(Environment.NewLine).ToList(),
+                    RepeatableStatusDisplay.Run(output.Split(Environment.NewLine).ToList(),
                         ConnectionStringsMsg.INF001,
                         ConnectionStringsMsg.INF002,
                         ConnectionStringsMsg.INF003
