@@ -11,7 +11,7 @@ namespace config.Utils.Mapper
 
 			var instanceString = $"[darkseagreen4_1]Data Source={instance}[/];";
 			var userIdString = $"[darkseagreen4_1]User ID={user}[/];";
-			var passwordString = $"[darkseagreen4_1]User ID={password}[/];";
+			var passwordString = $"[darkseagreen4_1]Password={password}[/];";
 
 			foreach (var connectionLine in connectionLines)
             {
@@ -26,7 +26,7 @@ namespace config.Utils.Mapper
             StringBuilder stringBuilder = new();
             stringBuilder.Append("<add ");
 
-            stringBuilder.Append($"[skyblue2]Name=\"{connectionLine.Name}\"[/] ");
+            stringBuilder.Append($"[skyblue2]name=\"{connectionLine.Name}\"[/] ");
             stringBuilder.Append($"providerName=\"{connectionLine.ProviderName}\" ");
 
             stringBuilder.Append("connectionString=\"");
