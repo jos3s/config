@@ -1,8 +1,8 @@
 ﻿using config.Models.DTOs;
 using Spectre.Console;
 
-namespace config.Utils;
-internal class RepeatableStatus
+namespace config.Utils.Display;
+internal class RepeatableStatusDisplay
 {
     public static int Run(IEnumerable<string> strings, string initialMsg,string repeatableMsg, string finalMsg, int sleep = 1000)
     {

@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace config.Utils
+namespace config.Utils.Display
 {
     internal class MultiSelectDisplay
 	{
