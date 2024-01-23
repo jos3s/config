@@ -28,7 +28,7 @@ namespace config.Utils.Mapper
         {
             StringBuilder stringBuilder = new();
 
-            stringBuilder.AppendLine(string.Format(StringsFormatedMsg.CONNCONFIG,
+            stringBuilder.Append(string.Format(StringsFormatedMsg.CONNCONFIG,
                 connectionLine.Name,
                 connectionLine.ProviderName,
                 instanceString,
