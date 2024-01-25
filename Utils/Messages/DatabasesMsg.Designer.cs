@@ -22,14 +22,14 @@ namespace config.Utils.Messages {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class UpdateDatabasesMsg {
+    public class DatabasesMsg {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal UpdateDatabasesMsg() {
+        internal DatabasesMsg() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace config.Utils.Messages {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("config.Utils.Messages.UpdateDatabasesMsg", typeof(UpdateDatabasesMsg).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("config.Utils.Messages.DatabasesMsg", typeof(DatabasesMsg).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -102,6 +102,33 @@ namespace config.Utils.Messages {
         public static string INF005 {
             get {
                 return ResourceManager.GetString("INF005", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Read databases...
+        /// </summary>
+        public static string INF006 {
+            get {
+                return ResourceManager.GetString("INF006", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Updating list of databases.
+        /// </summary>
+        public static string INF007 {
+            get {
+                return ResourceManager.GetString("INF007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Database successful removed....
+        /// </summary>
+        public static string INF008 {
+            get {
+                return ResourceManager.GetString("INF008", resourceCulture);
             }
         }
     }

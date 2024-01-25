@@ -132,4 +132,13 @@
   <data name="INF005" xml:space="preserve">
     <value>Successful updated databases...</value>
   </data>
+  <data name="INF006" xml:space="preserve">
+    <value>Read databases..</value>
+  </data>
+  <data name="INF007" xml:space="preserve">
+    <value>Updating list of databases</value>
+  </data>
+  <data name="INF008" xml:space="preserve">
+    <value>Database successful removed...</value>
+  </data>
 </root>
