@@ -35,10 +35,10 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>KeysMsg.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Utils\Messages\UpdateDatabasesMsg.Designer.cs">
+		<Compile Update="Utils\Messages\DatabasesMsg.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>UpdateDatabasesMsg.resx</DependentUpon>
+			<DependentUpon>DatabasesMsg.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
@@ -55,9 +55,9 @@
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>KeysMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Utils\Messages\UpdateDatabasesMsg.resx">
+		<EmbeddedResource Update="Utils\Messages\DatabasesMsg.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
-			<LastGenOutput>UpdateDatabasesMsg.Designer.cs</LastGenOutput>
+			<LastGenOutput>DatabasesMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 
