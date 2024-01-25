@@ -1,5 +1,5 @@
 ﻿using config.Commands.ConnectionStrings;
-
+using config.Commands.ConnectionStrings.Database;
 using Spectre.Console.Cli;
 
 namespace config.Branchs
@@ -27,6 +27,8 @@ namespace config.Branchs
                     con.AddCommand<CreateDatabaseCommand>("add")
                         .WithDescription("Create new database in the list of databases")
                         .WithExample("connection","database");
+
+                    con.AddCommand<RemoveDatabaseCommand>("remove");
                 });
             });
         }
