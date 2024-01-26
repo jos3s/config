@@ -29,6 +29,7 @@ namespace config.Branchs
                         .WithExample("connection","database");
 
                     con.AddCommand<RemoveDatabaseCommand>("remove");
+                    con.AddCommand<DisplayDatabaseCommand>("display");
                 });
             });
         }
