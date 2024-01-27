@@ -23,9 +23,11 @@ internal static class AppSettingsBranch
             app.AddCommand<UpdateKeysCommand>("update")
                 .WithDescription("Update value of key");
 
-            
             app.AddCommand<RemoveKeyCommand>("remove")
                 .WithDescription("Remove a key");
+
+            app.AddCommand<DisplayKeysCommand>("display")
+                .WithDescription("Display all keys");
         });
     }
 }
