@@ -1,6 +1,6 @@
 ﻿using Spectre.Console.Cli;
 
-namespace config.Settings.ConnectionStrings.Database;
+namespace config.Settings.Database;
 internal class DisplayDatabaseSettings : CommandSettings
 {
     [CommandOption("-j|--json")]
