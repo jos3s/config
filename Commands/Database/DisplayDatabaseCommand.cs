@@ -1,13 +1,13 @@
-﻿using config.Settings.ConnectionStrings.Database;
-using config.Singleton;
+﻿using config.Singleton;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using Spectre.Console.Rendering;
 using System.Text.Json;
 using config.Models;
+using config.Settings.Database;
 
-namespace config.Commands.ConnectionStrings.Database;
+namespace config.Commands.Database;
 internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
 {
     public override int Execute(CommandContext context, DisplayDatabaseSettings settings)
@@ -27,7 +27,7 @@ internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
         return 0;
     }
 
-    private static void DisplayTable(List<ConnectionLine> databases)
+    private static void DisplayTable(List<Models.Database> databases)
     {
         var table = new Table();
         table.AddColumn("Name");
@@ -45,11 +45,11 @@ internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
             {
                 new Text(connectionLine.Name),
                 new Text(connectionLine.ProviderName),
-                new Text(connectionLine.ConnectionString.InitalCatalog),
-                new Text(connectionLine.ConnectionString.Pooling),
-                new Text(connectionLine.ConnectionString.ConnectTimeout.ToString()),
-                new Text(connectionLine.ConnectionString.AplicationName),
-                new Text(connectionLine.ConnectionString.Encrypt)
+                new Text(connectionLine.InitalCatalog),
+                new Text(connectionLine.Pooling),
+                new Text(connectionLine.ConnectTimeout.ToString()),
+                new Text(connectionLine.AplicationName),
+                new Text(connectionLine.Encrypt)
             });
         }
 
