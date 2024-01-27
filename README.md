@@ -7,7 +7,7 @@
 
 O programa foi desenvolvido com o objetivo de testar a biblioteca Spectre.Console e implementar uma solução que permita uma geração fácil de valores de configurações para aplicações .Net, gerando connection strings e app settings.
 
-[Fluxograma](https://whimsical.com/config-7vEDue3rz7SL8ugtXTjgwe@7YNFXnKbYtKDHWX4p3ayu)
+[Fluxograma](https://whimsical.com/config-LCPMnRCLfhPL9kvzyhFxyt)
 
 ## Tecnologias
 
