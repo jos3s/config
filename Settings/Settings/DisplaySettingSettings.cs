@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using Spectre.Console.Cli;
 
-namespace config.Settings.AppSettings;
-internal class DisplayKeysSettings : CommandSettings
+namespace config.Settings.Settings;
+internal class DisplaySettingSettings : CommandSettings
 {
     [CommandOption("-j|--json")]
     [DefaultValue(false)]
