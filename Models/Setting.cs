@@ -2,7 +2,7 @@
 using config.Utils.Messages;
 
 namespace config.Models;
-internal class AppKey
+internal class Setting
 {
     [JsonPropertyName("key")]
     public string Key { get; set; }

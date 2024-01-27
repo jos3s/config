@@ -1,29 +1,29 @@
 ﻿using config.Models;
 
 namespace config.Transaction;
-internal class AppSettingsTRA
+internal class SettingsTRA
 {
-    public static IEnumerable<string> GetGroupsName(IEnumerable<AppSettingsGroup> groups)
+    public static IEnumerable<string> GetGroupsName(IEnumerable<SettingsGroup> groups)
     {
         return groups.Select(x => x.GroupName);
     }
     
-    public static IEnumerable<string> GetGroupOptions(AppSettingsGroup group)
+    public static IEnumerable<string> GetGroupOptions(SettingsGroup group)
     {
         return group.Keys.Select(x => x.Key);
     }
 
-    public static AppSettingsGroup GetGroupByName(IEnumerable<AppSettingsGroup> group, string name)
+    public static SettingsGroup GetGroupByName(IEnumerable<SettingsGroup> group, string name)
     {
         return group.FirstOrDefault(x => x.GroupName.Equals(name, StringComparison.InvariantCultureIgnoreCase));
     }
 
-    public static IEnumerable<string> GetOptions(AppSettingsGroup group)
+    public static IEnumerable<string> GetOptions(SettingsGroup group)
     {
         return group.Keys.Select(x => x.Key);
     }
 
-    public static AppKey GetKeyByGroupAndKeyName(AppSettingsGroup group, string key)
+    public static Setting GetKeyByGroupAndKeyName(SettingsGroup group, string key)
     {
         return group.Keys.FirstOrDefault(x => x.Key.Equals(key, StringComparison.InvariantCultureIgnoreCase))!;
     }
