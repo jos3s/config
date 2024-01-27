@@ -20,20 +20,20 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Utils\Messages\StringsFormatedMsg.Designer.cs">
-		  <DesignTime>True</DesignTime>
-		  <AutoGen>True</AutoGen>
-		  <DependentUpon>StringsFormatedMsg.resx</DependentUpon>
-		</Compile>
 		<Compile Update="Utils\Messages\ConnectionStringsMsg.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>ConnectionStringsMsg.resx</DependentUpon>
 		</Compile>
-		<Compile Update="Utils\Messages\KeysMsg.Designer.cs">
+		<Compile Update="Utils\Messages\StringsFormatedMsg.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>StringsFormatedMsg.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Utils\Messages\SettingsMsg.Designer.cs">
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>KeysMsg.resx</DependentUpon>
+			<DependentUpon>SettingsMsg.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Utils\Messages\DatabasesMsg.Designer.cs">
 			<DesignTime>True</DesignTime>
@@ -43,17 +43,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Update="Utils\Messages\StringsFormatedMsg.resx">
-		  <Generator>ResXFileCodeGenerator</Generator>
-		  <LastGenOutput>StringsFormatedMsg.Designer.cs</LastGenOutput>
-		</EmbeddedResource>
 		<EmbeddedResource Update="Utils\Messages\ConnectionStringsMsg.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>ConnectionStringsMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
-		<EmbeddedResource Update="Utils\Messages\KeysMsg.resx">
+		<EmbeddedResource Update="Utils\Messages\StringsFormatedMsg.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>StringsFormatedMsg.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Utils\Messages\SettingsMsg.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
-			<LastGenOutput>KeysMsg.Designer.cs</LastGenOutput>
+			<LastGenOutput>SettingsMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Utils\Messages\DatabasesMsg.resx">
 			<Generator>PublicResXFileCodeGenerator</Generator>
