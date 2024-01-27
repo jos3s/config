@@ -7,11 +7,11 @@ using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace config.Commands.AppSettings;
-internal class GenerateKeysCommand : Command<GenereateKeysSettings>
+internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
 {
     public override int Execute(CommandContext context, GenereateKeysSettings settings)
     {
-        var appSettings = AppSettingsSingleton.Instance.Lines();
+        var appSettings = SettingsSingleton.Instance.Lines();
 
         var keys = appSettings.SelectMany(x => x.Keys.Select(x => x.Key));
 
@@ -25,9 +25,9 @@ internal class GenerateKeysCommand : Command<GenereateKeysSettings>
         if (settings.DisplayPerLines)
         {
             RepeatableStatusDisplay.Run(strings,
-                KeysMsg.INF001,
-                KeysMsg.INF007,
-                KeysMsg.INF006);
+                SettingsMsg.INF001,
+                SettingsMsg.INF007,
+                SettingsMsg.INF006);
         }
         else
         {
@@ -39,7 +39,7 @@ internal class GenerateKeysCommand : Command<GenereateKeysSettings>
         return 0;
     }
 
-    private static IEnumerable<string> DisplayMultiSelection(IEnumerable<AppSettingsGroup> appSettings)
+    private static IEnumerable<string> DisplayMultiSelection(IEnumerable<SettingsGroup> appSettings)
     {
         var multiSelection = new MultiSelectionPrompt<string>()
             .Title("Select [green]keys[/]:")
@@ -56,7 +56,7 @@ internal class GenerateKeysCommand : Command<GenereateKeysSettings>
         return AnsiConsole.Prompt(multiSelection);
     }
 
-    private IEnumerable<string> CreateListResult(List<AppSettingsGroup> appSettings, IEnumerable<string> keys, bool json)
+    private IEnumerable<string> CreateListResult(List<SettingsGroup> appSettings, IEnumerable<string> keys, bool json)
     {
         var output = new List<string>();
 
