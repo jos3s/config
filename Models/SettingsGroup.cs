@@ -2,11 +2,11 @@
 
 namespace config.Models;
 
-internal class AppSettingsGroup
+internal class SettingsGroup
 {
     [JsonPropertyName("group")]
     public string GroupName { get; set; }
 
     [JsonPropertyName("keys")]
-    public List<AppKey> Keys { get; set; }
+    public List<Setting> Keys { get; set; }
 }

@@ -1,9 +1,9 @@
 ﻿using Spectre.Console.Cli;
 using System.ComponentModel;
 
-namespace config.Settings.ConnectionStrings.Database
+namespace config.Settings.Database
 {
-    internal class DatabaseSettings : CommandSettings
+    internal class CreateDatabaseSettings : CommandSettings
     {
         [CommandArgument(0, "<name>")]
         public string Name { get; set; }

@@ -1,7 +1,7 @@
 ﻿using Spectre.Console.Cli;
 
-namespace config.Settings.AppSettings;
-internal class CreateKeySettings : CommandSettings
+namespace config.Settings.Settings;
+internal class CreateSettingSettings : CommandSettings
 {
     [CommandArgument(0, "<group>")]
     public string GroupName { get; set; }

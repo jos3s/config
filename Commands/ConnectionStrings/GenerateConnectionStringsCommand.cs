@@ -9,9 +9,9 @@ using Spectre.Console.Cli;
 
 namespace config.Commands.ConnectionStrings
 {
-    internal class GenerateConnectionStringsCommand : Command<ConnectionSettings>
+    internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSettings>
     {
-        public override int Execute(CommandContext context, ConnectionSettings settings)
+        public override int Execute(CommandContext context, ConnectionStringsSettings settings)
         {
             try
             {
@@ -24,11 +24,11 @@ namespace config.Commands.ConnectionStrings
                     databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
                 }
 
-                var databasesSelected = ConnectionLinesTRA.GetConnectionLinesByNames(databasesNames, databases);
+                var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
 
                  var output = !settings.JsonFormat 
-                    ? ConnectionLineMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance) 
-                    : ConnectionLineMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
+                    ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance) 
+                    : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
 
                 if (settings.DisplayStatus)
                 {

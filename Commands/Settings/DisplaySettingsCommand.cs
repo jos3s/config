@@ -1,17 +1,17 @@
-﻿using config.Settings.AppSettings;
-using config.Singleton;
+﻿using config.Singleton;
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using System.Text.Json;
 using config.Utils.Extensions;
+using config.Settings.Settings;
 
-namespace config.Commands.AppSettings;
-internal class DisplayKeysCommand : Command<DisplayKeysSettings>
+namespace config.Commands.Settings;
+internal class DisplaySettingsCommand : Command<DisplaySettingSettings>
 {
-    public override int Execute(CommandContext context, DisplayKeysSettings settings)
+    public override int Execute(CommandContext context, DisplaySettingSettings settings)
     {
-        var keysGroups = AppSettingsSingleton.Instance.Lines();
+        var keysGroups = SettingsSingleton.Instance.Lines();
 
         if (settings.DisplayInJson)
         {

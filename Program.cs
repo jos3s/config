@@ -6,8 +6,10 @@ var app = new CommandApp();
 
 app.Configure(config =>
 {
-	config.UseConnectionStringsBranch();
-	config.UseAppSettingsBranch();
+	config
+        .UseConnectionStringsBranch()
+        .UseAppSettingsBranch()
+        .UseDatabaseBranch();
 });
 
 try

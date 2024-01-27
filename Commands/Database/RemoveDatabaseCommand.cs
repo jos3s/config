@@ -1,12 +1,12 @@
 ﻿using config.Models.DTOs;
-using config.Settings.ConnectionStrings.Database;
+using config.Settings.Database;
 using config.Singleton;
 using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.ConnectionStrings.Database;
+namespace config.Commands.Database;
 internal class RemoveDatabaseCommand : Command<RemoveDatabaseSettings>
 {
     public override int Execute(CommandContext context, RemoveDatabaseSettings settings)
@@ -18,14 +18,14 @@ internal class RemoveDatabaseCommand : Command<RemoveDatabaseSettings>
             AnsiConsole.Write("Not databases to remove.");
             return 0;
         }
-        
+
         var databasesNames = databases.Select(x => x.Name);
 
         var databaseSelected = SelectionDisplay.Selection(databasesNames, "database");
 
         if (AnsiConsole.Confirm($"Remove {databaseSelected} database?", false))
         {
-            var databaseSelectedObject = databases.FirstOrDefault(x=> x.Name.Equals(databaseSelected, StringComparison.CurrentCultureIgnoreCase));
+            var databaseSelectedObject = databases.FirstOrDefault(x => x.Name.Equals(databaseSelected, StringComparison.CurrentCultureIgnoreCase));
 
             databases.Remove(databaseSelectedObject);
 

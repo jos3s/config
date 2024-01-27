@@ -1,15 +1,16 @@
 ﻿using config.Models;
-using config.Settings.ConnectionStrings.Database;
+using config.Settings.Database;
 using config.Singleton;
 using config.Utils.Messages;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.ConnectionStrings.Database
+namespace config.Commands.Database
 {
-    internal class CreateDatabaseCommand : Command<DatabaseSettings>
+    internal class CreateDatabaseCommand : Command<CreateDatabaseSettings>
     {
-        public override int Execute(CommandContext context, DatabaseSettings settings)
+        public override int Execute(CommandContext context, CreateDatabaseSettings settings)
         {
             try
             {
@@ -20,18 +21,15 @@ namespace config.Commands.ConnectionStrings.Database
                         AnsiConsole.MarkupLine(DatabasesMsg.INF002);
                         Thread.Sleep(1000);
 
-                        var connection = new ConnectionLine
+                        var connection = new Models.Database
                         {
                             Name = settings.Name,
                             ProviderName = settings.ProviderName,
-                            ConnectionString = new ConnectionString
-                            {
-                                AplicationName = settings.AplicationName,
-                                ConnectTimeout = settings.connectionTimeoutt,
-                                Encrypt = settings.Encrypt,
-                                InitalCatalog = settings.Catalog,
-                                Pooling = settings.Pooling,
-                            }
+                            AplicationName = settings.AplicationName,
+                            ConnectTimeout = settings.connectionTimeoutt,
+                            Encrypt = settings.Encrypt,
+                            InitalCatalog = settings.Catalog,
+                            Pooling = settings.Pooling,
                         };
 
                         ctx.Status(string.Format(DatabasesMsg.INF003, "[green]", "[/]"));
