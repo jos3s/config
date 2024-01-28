@@ -1,4 +1,4 @@
-﻿using config.Features.ConnectionStrings.Commands;
+﻿using config.Features.ConnectionStrings;
 using Spectre.Console.Cli;
 
 namespace config.Branchs
