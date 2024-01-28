@@ -1,5 +1,4 @@
-﻿using config.Features.Settings.Models;
-using config.Features.Settings.Settings;
+﻿using config.Features.Settings.Shared;
 using config.Models;
 using config.Models.DTOs;
 using config.Singleton;
@@ -8,7 +7,7 @@ using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console.Cli;
 
-namespace config.Features.Settings.Commands;
+namespace config.Features.Settings.Create;
 internal class CreateSettingsCommand : Command<CreateSettingSettings>
 {
     public override int Execute(CommandContext context, CreateSettingSettings settings)
@@ -18,7 +17,7 @@ internal class CreateSettingsCommand : Command<CreateSettingSettings>
         {
             var appSettings = SettingsSingleton.Instance.Lines();
 
-            var newKey = new Setting
+            var newKey = new SettingModel
             {
                 Key = settings.KeyName,
                 Value = settings.KeyValue
@@ -28,10 +27,10 @@ internal class CreateSettingsCommand : Command<CreateSettingSettings>
 
             if (group == null)
             {
-                var newGroup = new SettingsGroup
+                var newGroup = new SettingsGroupModel
                 {
                     GroupName = settings.GroupName,
-                    Keys = new List<Setting> { newKey },
+                    Keys = new List<SettingModel> { newKey },
                 };
                 appSettings.Add(newGroup);
             }

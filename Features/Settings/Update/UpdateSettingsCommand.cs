@@ -1,5 +1,4 @@
-﻿using config.Features.Settings.Models;
-using config.Features.Settings.Settings;
+﻿using config.Features.Settings.Shared;
 using config.Models.DTOs;
 using config.Singleton;
 using config.Transaction;
@@ -8,7 +7,7 @@ using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Features.Settings.Commands;
+namespace config.Features.Settings.Update;
 internal class UpdateSettingsCommand : Command<UpdateSettingSettings>
 {
     public override int Execute(CommandContext context, UpdateSettingSettings settings)
@@ -33,7 +32,7 @@ internal class UpdateSettingsCommand : Command<UpdateSettingSettings>
         return 0;
     }
 
-    private static void SetNewKeyValue(string keySelectedString, SettingsGroup groupSelected)
+    private static void SetNewKeyValue(string keySelectedString, SettingsGroupModel groupSelected)
     {
         var newValue = AnsiConsole.Ask<string>($"What will the new key [blue]{keySelectedString}[/] value be?");
 
@@ -42,7 +41,7 @@ internal class UpdateSettingsCommand : Command<UpdateSettingSettings>
         keySelected.Value = newValue;
     }
 
-    private static string GetKeyName(SettingsGroup groupSelected)
+    private static string GetKeyName(SettingsGroupModel groupSelected)
     {
         var keys = SettingsTRA.GetOptions(groupSelected);
 
@@ -50,7 +49,7 @@ internal class UpdateSettingsCommand : Command<UpdateSettingSettings>
         return keySelectedString;
     }
 
-    private static SettingsGroup GetGroup(IEnumerable<SettingsGroup> appSettings)
+    private static SettingsGroupModel GetGroup(IEnumerable<SettingsGroupModel> appSettings)
     {
         var groups = SettingsTRA.GetGroupsName(appSettings);
 

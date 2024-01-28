@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel;
-using config.Settings;
-
+using config.Features._Shared;
 using Spectre.Console.Cli;
 
-namespace config.Features.Settings.Settings;
+namespace config.Features.Settings.Display;
 internal class DisplaySettingSettings : BaseSettings
 {
     [CommandOption("-j|--json")]

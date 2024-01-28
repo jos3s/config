@@ -4,9 +4,8 @@ using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using System.Text.Json;
 using config.Utils.Extensions;
-using config.Features.Settings.Settings;
 
-namespace config.Features.Settings.Commands;
+namespace config.Features.Settings.Display;
 internal class DisplaySettingsCommand : Command<DisplaySettingSettings>
 {
     public override int Execute(CommandContext context, DisplaySettingSettings settings)
