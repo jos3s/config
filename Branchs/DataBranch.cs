@@ -5,41 +5,51 @@ using config.Features.Settings.Create;
 using config.Features.Settings.Display;
 using config.Features.Settings.Remove;
 using config.Features.Settings.Update;
+using config.Utils.Messages.Documentation;
 using Spectre.Console.Cli;
 
 namespace config.Branchs;
-internal static class DataBranch 
+internal static class DataBranch
 {
-    public static IConfigurator UseDatabaseBranch(this IConfigurator app)
+    public static IConfigurator UseDataBranch(this IConfigurator app)
     {
-        app.AddBranch("data", app =>
+        app.AddBranch(DocumentationMsg.BRANCH001, data =>
         {
-            app.AddBranch("database", database =>
+            data.SetDescription(DescriptionMsg.BRANCH001);
+
+            data.AddBranch(DocumentationMsg.BRANCH002, database =>
             {
-                database.SetDescription("Create, remove or display databases in the list of databases");
+                database.SetDescription(DescriptionMsg.BRANCH002);
 
-                database.AddCommand<CreateDatabaseCommand>("create")
-                    .WithDescription("Create new database in the list of databases");
+                database.AddCommand<CreateDatabaseCommand>(DocumentationMsg.COMMAND003)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND003, "database"));
 
-                database.AddCommand<RemoveDatabaseCommand>("remove");
+                database.AddCommand<RemoveDatabaseCommand>(DocumentationMsg.COMMAND004)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND004, "database"));
 
-                database.AddCommand<DisplayDatabaseCommand>("display");
+                database.AddCommand<DisplayDatabaseCommand>(DocumentationMsg.COMMAND006)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND006, "all databases"))
+                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH002, DocumentationMsg.COMMAND006)
+                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH002, DocumentationMsg.COMMAND006, "-j"); 
             });
 
-            app.AddBranch("settings", settings =>
+            data.AddBranch(DocumentationMsg.BRANCH003, settings =>
             {
-                settings.SetDescription("Create, update, remove or display settings in the list of settings");
-                settings.AddCommand<CreateSettingsCommand>("create")
-                    .WithDescription("Create new key");
+                settings.SetDescription(DescriptionMsg.BRANCH003);
 
-                settings.AddCommand<UpdateSettingsCommand>("update")
-                    .WithDescription("Update value of key");
+                settings.AddCommand<CreateSettingsCommand>(DocumentationMsg.COMMAND003)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND003, "setting key"));
 
-                settings.AddCommand<RemoveSettingsCommand>("remove")
-                    .WithDescription("Remove a key");
+                settings.AddCommand<UpdateSettingsCommand>(DocumentationMsg.COMMAND005)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND005, "setting key"));
 
-                settings.AddCommand<DisplaySettingsCommand>("display")
-                    .WithDescription("Display all keys");
+                settings.AddCommand<RemoveSettingsCommand>(DocumentationMsg.COMMAND004)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND004, "setting key"));
+
+                settings.AddCommand<DisplaySettingsCommand>(DocumentationMsg.COMMAND006)
+                    .WithDescription(string.Format(DescriptionMsg.COMMAND006, "all settings keys"))
+                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH003, DocumentationMsg.COMMAND006)
+                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH003, DocumentationMsg.COMMAND006, "-j");
             });
         });
 
