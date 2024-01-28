@@ -25,10 +25,10 @@ git clone https://github.com/jos3s/config.git
 
 ```
 
-Abra a pasta do projeto e execute o comando no terminal para executar o pograma e exibir a documentação.
+Abra a pasta do projeto e execute o comando no terminal para executar o pograma e exibir a ajuda.
 
 ```bash
-dotnet run --property WarningLevel=0 -- -h
+dotnet run -- -h
 ```
 
 ## Licença
