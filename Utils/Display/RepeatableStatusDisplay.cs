@@ -1,4 +1,4 @@
-﻿using config.Models.DTOs;
+﻿using config.DTOs;
 using Spectre.Console;
 
 namespace config.Utils.Display;

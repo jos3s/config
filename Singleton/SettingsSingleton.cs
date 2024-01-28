@@ -1,4 +1,4 @@
-﻿using config.Features.Settings.Models;
+﻿using config.Features.Settings.Shared;
 using System.Reflection;
 using System.Text.Json;
 
@@ -10,7 +10,7 @@ namespace config.Singleton
 
         private static string Path = $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\AppData\Settings.json";
 
-        private List<SettingsGroup> Settings { get; set; }
+        private List<SettingsGroupModel> Settings { get; set; }
 
         private JsonSerializerOptions Options = new() { WriteIndented = true };
 
@@ -24,15 +24,15 @@ namespace config.Singleton
             }
         }
 
-        public List<SettingsGroup> Lines()
+        public List<SettingsGroupModel> Lines()
         {
             var text = File.ReadAllText(Path);
-            Settings = JsonSerializer.Deserialize<List<SettingsGroup>>(text)!;
+            Settings = JsonSerializer.Deserialize<List<SettingsGroupModel>>(text)!;
 
             return Settings;
         }
 
-        public void Update(List<SettingsGroup> appSettings)
+        public void Update(List<SettingsGroupModel> appSettings)
         {
             var json = JsonSerializer.Serialize(appSettings, Options);
             File.WriteAllText(Path, json);

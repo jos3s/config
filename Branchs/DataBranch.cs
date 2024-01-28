@@ -1,5 +1,10 @@
-﻿using config.Features.Database.Commands;
-using config.Features.Settings.Commands;
+﻿using config.Features.Database.Create;
+using config.Features.Database.Display;
+using config.Features.Database.Remove;
+using config.Features.Settings.Create;
+using config.Features.Settings.Display;
+using config.Features.Settings.Remove;
+using config.Features.Settings.Update;
 using Spectre.Console.Cli;
 
 namespace config.Branchs;

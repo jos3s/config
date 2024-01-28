@@ -1,12 +1,12 @@
 ﻿using System.Text;
 using config.Utils.Messages;
-using config.Features.Database.Models;
+using config.Features.Database.Shared;
 
 namespace config.Utils.Mapper
 {
     internal class ConnectionsStringMapper
     {
-        public static string ToConfig(IEnumerable<Database> connectionLines, string user, string password, string instance)
+        public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance)
         {
             StringBuilder stringBuilder = new();
 
@@ -24,7 +24,7 @@ namespace config.Utils.Mapper
             return stringBuilder.ToString();
         }
 
-        public static string ToConfigLine(Database connectionLine, string instanceString, string userIdString, string passwordString)
+        public static string ToConfigLine(DatabaseModel connectionLine, string instanceString, string userIdString, string passwordString)
         {
             StringBuilder stringBuilder = new();
 
@@ -41,7 +41,7 @@ namespace config.Utils.Mapper
             return stringBuilder.ToString();
         }
 
-        public static string ToJson(IEnumerable<Database> connectionLines, string user, string password, string instance)
+        public static string ToJson(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance)
         {
 
             var instanceString = $"[darkseagreen4_1]{instance}[/]";
@@ -60,7 +60,7 @@ namespace config.Utils.Mapper
             return stringBuilder.ToString();
         }
 
-        public static string ToJsonLine(Database connectionLine, string instanceString, string userIdString, string passwordString)
+        public static string ToJsonLine(DatabaseModel connectionLine, string instanceString, string userIdString, string passwordString)
         {
             StringBuilder stringBuilder = new();
 

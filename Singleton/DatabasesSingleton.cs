@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json;
-using config.Features.Database.Models;
+using config.Features.Database.Shared;
 
 namespace config.Singleton
 {
@@ -10,7 +10,7 @@ namespace config.Singleton
 
         private static string Path =
             $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\AppData\Databases.json";
-        private List<Database> Databases { get; set; }
+        private List<DatabaseModel> Databases { get; set; }
 
         private JsonSerializerOptions Options = new() { WriteIndented = true };
 
@@ -23,18 +23,18 @@ namespace config.Singleton
             }
         }
 
-        public List<Database> Lines()
+        public List<DatabaseModel> Lines()
         {
             string text = File.ReadAllText(Path);
-            Databases = JsonSerializer.Deserialize<List<Database>>(text)!;
+            Databases = JsonSerializer.Deserialize<List<DatabaseModel>>(text)!;
 
             return Databases;
         }
 
-        public void InsertLine(Database line)
+        public void InsertLine(DatabaseModel line)
         {
             string text = File.ReadAllText(Path);
-            Databases = JsonSerializer.Deserialize<List<Database>>(text)!;
+            Databases = JsonSerializer.Deserialize<List<DatabaseModel>>(text)!;
 
             if (!Databases.Contains(line))
             {
@@ -50,7 +50,7 @@ namespace config.Singleton
             }
         }
 
-        public void Update(List<Database> databases)
+        public void Update(List<DatabaseModel> databases)
         {
             var json = JsonSerializer.Serialize(databases, Options);
             File.WriteAllText(Path, json);
