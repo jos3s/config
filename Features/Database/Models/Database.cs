@@ -1,15 +1,15 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace config.Models
+namespace config.Features.Database.Models
 {
     internal class Database
-	{
-		[JsonPropertyName("name")]
-		public string Name { get; set; }
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-		[JsonPropertyName("providerName")]
-		public string ProviderName { get; set; }
-        
+        [JsonPropertyName("providerName")]
+        public string ProviderName { get; set; }
+
         [JsonPropertyName("initalCatalog")]
         public string InitalCatalog { get; set; }
 

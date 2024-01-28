@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace config.Models;
+namespace config.Features.Settings.Models;
 
 internal class SettingsGroup
 {

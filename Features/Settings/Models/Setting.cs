@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using config.Utils.Messages;
 
-namespace config.Models;
+namespace config.Features.Settings.Models;
 internal class Setting
 {
     [JsonPropertyName("key")]
@@ -12,7 +12,7 @@ internal class Setting
 
     public string ToConfig()
     {
-       return string.Format(StringsFormatedMsg.APPCONFIG, Key, Value);
+        return string.Format(StringsFormatedMsg.APPCONFIG, Key, Value);
     }
 
     public string ToJson()
@@ -29,7 +29,7 @@ internal class Setting
             output = string.Format(StringsFormatedMsg.APPJSON, Key, boolValue);
         else if (Value.Equals(floatValue.ToString()))
             output = string.Format(StringsFormatedMsg.APPJSON, Key, floatValue);
-        else 
+        else
             output = string.Format(StringsFormatedMsg.APPJSON, Key, $"\"{Value}\"");
 
         return output;
