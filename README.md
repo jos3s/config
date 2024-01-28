@@ -1,7 +1,6 @@
 # Config
 
-![terminal_config](https://github.com/jos3s/config/assets/50359547/6760e72b-da75-4031-b757-dcd7c977816a)
-
+![terminal_config](https://github.com/jos3s/config/assets/50359547/14fdfdee-3541-4ad5-adfe-0c16e3d0076b)
 
  > Esse programa é um CLI, um Command Line Interface, um programa que roda pelo terminal exclusivamente pelo terminal.
 
