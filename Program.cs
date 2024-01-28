@@ -9,7 +9,7 @@ app.Configure(config =>
 	config
         .UseConnectionStringsBranch()
         .UseAppSettingsBranch()
-        .UseDatabaseBranch();
+        .UseDataBranch();
 });
 
 try
