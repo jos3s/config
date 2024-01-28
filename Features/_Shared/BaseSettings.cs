@@ -1,6 +1,6 @@
 ﻿using Spectre.Console.Cli;
 
-namespace config.Settings;
+namespace config.Features._Shared;
 internal class BaseSettings : CommandSettings
 {
 }
