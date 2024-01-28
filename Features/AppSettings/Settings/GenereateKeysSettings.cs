@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel;
+
+using config.Settings;
+
 using Spectre.Console.Cli;
 
-namespace config.Settings.AppSettings;
-internal class GenereateKeysSettings : CommandSettings
+namespace config.Features.AppSettings.Settings;
+internal class GenereateKeysSettings : BaseSettings
 {
     [CommandOption("-s|--select")]
     [DefaultValue(false)]
@@ -11,7 +14,7 @@ internal class GenereateKeysSettings : CommandSettings
 
     [CommandOption("-j|--json")]
     [DefaultValue(false)]
-    [Description("Generate keys for json file")] 
+    [Description("Generate keys for json file")]
     public bool Json { get; set; }
 
     [CommandOption("--display")]

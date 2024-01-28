@@ -1,7 +1,9 @@
-﻿using Spectre.Console.Cli;
+﻿using config.Settings;
 
-namespace config.Settings.Settings;
-internal class CreateSettingSettings : CommandSettings
+using Spectre.Console.Cli;
+
+namespace config.Features.Settings.Settings;
+internal class CreateSettingSettings : BaseSettings
 {
     [CommandArgument(0, "<group>")]
     public string GroupName { get; set; }

@@ -1,10 +1,12 @@
-﻿using Spectre.Console.Cli;
+﻿using config.Settings;
+
+using Spectre.Console.Cli;
 
 using System.ComponentModel;
 
-namespace config.Settings.ConnectionStrings
+namespace config.Features.ConnectionStrings.Settings
 {
-    internal class ConnectionStringsSettings : CommandSettings
+    internal class ConnectionStringsSettings : BaseSettings
     {
         [CommandArgument(0, "<user>")]
         public string User { get; set; }
