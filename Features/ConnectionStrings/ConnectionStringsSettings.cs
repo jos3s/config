@@ -1,10 +1,9 @@
-﻿using config.Settings;
-
+﻿using config.Features._Shared;
 using Spectre.Console.Cli;
 
 using System.ComponentModel;
 
-namespace config.Features.ConnectionStrings.Settings
+namespace config.Features.ConnectionStrings
 {
     internal class ConnectionStringsSettings : BaseSettings
     {

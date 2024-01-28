@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel;
-
-using config.Settings;
-
+using config.Features._Shared;
 using Spectre.Console.Cli;
 
-namespace config.Features.AppSettings.Settings;
-internal class GenereateKeysSettings : BaseSettings
+namespace config.Features.AppSettings;
+internal class GenerateKeysSettings : BaseSettings
 {
     [CommandOption("-s|--select")]
     [DefaultValue(false)]

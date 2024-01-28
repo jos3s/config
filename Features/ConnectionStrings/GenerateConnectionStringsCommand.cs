@@ -1,5 +1,4 @@
-﻿using config.Features.ConnectionStrings.Settings;
-using config.Singleton;
+﻿using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Mapper;
@@ -7,7 +6,7 @@ using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Features.ConnectionStrings.Commands
+namespace config.Features.ConnectionStrings
 {
     internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSettings>
     {

@@ -1,15 +1,14 @@
-﻿using config.Features.AppSettings.Settings;
-using config.Features.Settings.Models;
+﻿using config.Features.Settings.Shared;
 using config.Singleton;
 using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Features.AppSettings.Commands;
-internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
+namespace config.Features.AppSettings;
+internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 {
-    public override int Execute(CommandContext context, GenereateKeysSettings settings)
+    public override int Execute(CommandContext context, GenerateKeysSettings settings)
     {
         var appSettings = SettingsSingleton.Instance.Lines();
 
@@ -39,7 +38,7 @@ internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
         return 0;
     }
 
-    private static IEnumerable<string> DisplayMultiSelection(IEnumerable<SettingsGroup> appSettings)
+    private static IEnumerable<string> DisplayMultiSelection(IEnumerable<SettingsGroupModel> appSettings)
     {
         var multiSelection = new MultiSelectionPrompt<string>()
             .Title("Select [green]keys[/]:")
@@ -56,7 +55,7 @@ internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
         return AnsiConsole.Prompt(multiSelection);
     }
 
-    private IEnumerable<string> CreateListResult(List<SettingsGroup> appSettings, IEnumerable<string> keys, bool json)
+    private IEnumerable<string> CreateListResult(List<SettingsGroupModel> appSettings, IEnumerable<string> keys, bool json)
     {
         var output = new List<string>();
 
