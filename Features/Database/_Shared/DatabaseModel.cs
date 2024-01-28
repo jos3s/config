@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace config.Features.Database.Models
+namespace config.Features.Database.Shared
 {
-    internal class Database
+    internal class DatabaseModel
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }

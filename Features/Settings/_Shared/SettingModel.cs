@@ -1,8 +1,8 @@
 ﻿using System.Text.Json.Serialization;
 using config.Utils.Messages;
 
-namespace config.Features.Settings.Models;
-internal class Setting
+namespace config.Features.Settings.Shared;
+internal class SettingModel
 {
     [JsonPropertyName("key")]
     public string Key { get; set; }
