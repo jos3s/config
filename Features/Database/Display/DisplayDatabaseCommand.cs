@@ -4,9 +4,8 @@ using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using Spectre.Console.Rendering;
 using System.Text.Json;
-using config.Features.Database.Settings;
 
-namespace config.Features.Database.Commands;
+namespace config.Features.Database.Display;
 internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
 {
     public override int Execute(CommandContext context, DisplayDatabaseSettings settings)
@@ -26,7 +25,7 @@ internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
         return 0;
     }
 
-    private static void DisplayTable(List<Models.Database> databases)
+    private static void DisplayTable(List<Shared.DatabaseModel> databases)
     {
         var table = new Table();
         table.AddColumn("Name");
