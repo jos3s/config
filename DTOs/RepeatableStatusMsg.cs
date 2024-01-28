@@ -1,4 +1,4 @@
-﻿namespace config.Models.DTOs;
+﻿namespace config.DTOs;
 internal class RepeatableStatusMsg
 {
     public string InitalMsg { get; set; }
