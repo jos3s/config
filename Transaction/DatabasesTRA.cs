@@ -1,4 +1,4 @@
-﻿using config.Models;
+﻿using config.Features.Database.Models;
 
 namespace config.Transaction;
 

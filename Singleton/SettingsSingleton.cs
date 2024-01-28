@@ -1,5 +1,4 @@
-﻿using config.Models;
-
+﻿using config.Features.Settings.Models;
 using System.Reflection;
 using System.Text.Json;
 

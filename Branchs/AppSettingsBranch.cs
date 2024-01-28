@@ -1,5 +1,4 @@
-﻿using config.Commands.AppSettings;
-
+﻿using config.Features.AppSettings.Commands;
 using Spectre.Console.Cli;
 
 namespace config.Branchs;

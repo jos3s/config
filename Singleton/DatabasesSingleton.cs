@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
-using config.Models;
 using System.Text.Json;
+using config.Features.Database.Models;
 
 namespace config.Singleton
 {

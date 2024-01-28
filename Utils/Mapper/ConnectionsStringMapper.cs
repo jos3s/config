@@ -1,6 +1,6 @@
-﻿using config.Models;
-using System.Text;
+﻿using System.Text;
 using config.Utils.Messages;
+using config.Features.Database.Models;
 
 namespace config.Utils.Mapper
 {

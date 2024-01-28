@@ -1,4 +1,4 @@
-﻿using config.Models;
+﻿using config.Features.Settings.Models;
 
 namespace config.Transaction;
 internal class SettingsTRA

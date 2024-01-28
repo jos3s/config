@@ -1,5 +1,5 @@
-﻿using config.Commands.Database;
-using config.Commands.Settings;
+﻿using config.Features.Database.Commands;
+using config.Features.Settings.Commands;
 using Spectre.Console.Cli;
 
 namespace config.Branchs;
