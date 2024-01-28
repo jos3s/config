@@ -1,4 +1,4 @@
-﻿using config.Settings.ConnectionStrings;
+﻿using config.Features.ConnectionStrings.Settings;
 using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
@@ -7,7 +7,7 @@ using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.ConnectionStrings
+namespace config.Features.ConnectionStrings.Commands
 {
     internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSettings>
     {
@@ -26,9 +26,9 @@ namespace config.Commands.ConnectionStrings
 
                 var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
 
-                 var output = !settings.JsonFormat 
-                    ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance) 
-                    : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
+                var output = !settings.JsonFormat
+                   ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance)
+                   : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
 
                 if (settings.DisplayStatus)
                 {

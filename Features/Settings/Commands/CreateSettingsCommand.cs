@@ -1,13 +1,14 @@
-﻿using config.Models;
+﻿using config.Features.Settings.Models;
+using config.Features.Settings.Settings;
+using config.Models;
 using config.Models.DTOs;
-using config.Settings.Settings;
 using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console.Cli;
 
-namespace config.Commands.Settings;
+namespace config.Features.Settings.Commands;
 internal class CreateSettingsCommand : Command<CreateSettingSettings>
 {
     public override int Execute(CommandContext context, CreateSettingSettings settings)

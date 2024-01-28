@@ -1,5 +1,5 @@
-﻿using config.Models.DTOs;
-using config.Settings.Settings;
+﻿using config.Features.Settings.Settings;
+using config.Models.DTOs;
 using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
@@ -7,7 +7,7 @@ using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.Settings;
+namespace config.Features.Settings.Commands;
 internal class RemoveSettingsCommand : Command<RemoveSettingSettings>
 {
     public override int Execute(CommandContext context, RemoveSettingSettings settings)

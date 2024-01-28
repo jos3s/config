@@ -1,12 +1,12 @@
-﻿using config.Models;
-using config.Settings.AppSettings;
+﻿using config.Features.AppSettings.Settings;
+using config.Features.Settings.Models;
 using config.Singleton;
 using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.AppSettings;
+namespace config.Features.AppSettings.Commands;
 internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
 {
     public override int Execute(CommandContext context, GenereateKeysSettings settings)
@@ -50,7 +50,7 @@ internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
 
         foreach (var group in appSettings)
         {
-            multiSelection.AddChoiceGroup(group.GroupName, group.Keys.Select(x=> x.Key));
+            multiSelection.AddChoiceGroup(group.GroupName, group.Keys.Select(x => x.Key));
         }
 
         return AnsiConsole.Prompt(multiSelection);
@@ -64,7 +64,7 @@ internal class GenerateAppSettingsCommand : Command<GenereateKeysSettings>
         {
             foreach (var key in appSettingsGroup.Keys)
             {
-                if(keys.Contains(key.Key)) output.Add(!json ? key.ToConfig() : key.ToJson());
+                if (keys.Contains(key.Key)) output.Add(!json ? key.ToConfig() : key.ToJson());
             }
         }
 

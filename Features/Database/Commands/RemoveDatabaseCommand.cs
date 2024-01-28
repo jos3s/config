@@ -1,12 +1,12 @@
-﻿using config.Models.DTOs;
-using config.Settings.Database;
+﻿using config.Features.Database.Settings;
+using config.Models.DTOs;
 using config.Singleton;
 using config.Utils.Display;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.Database;
+namespace config.Features.Database.Commands;
 internal class RemoveDatabaseCommand : Command<RemoveDatabaseSettings>
 {
     public override int Execute(CommandContext context, RemoveDatabaseSettings settings)

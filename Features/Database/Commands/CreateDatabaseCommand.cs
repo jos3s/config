@@ -1,12 +1,12 @@
-﻿using config.Models;
-using config.Settings.Database;
+﻿using config.Features.Database.Settings;
+using config.Models;
 using config.Singleton;
 using config.Utils.Messages;
 
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-namespace config.Commands.Database
+namespace config.Features.Database.Commands
 {
     internal class CreateDatabaseCommand : Command<CreateDatabaseSettings>
     {

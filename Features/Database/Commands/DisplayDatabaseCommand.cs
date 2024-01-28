@@ -4,10 +4,9 @@ using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using Spectre.Console.Rendering;
 using System.Text.Json;
-using config.Models;
-using config.Settings.Database;
+using config.Features.Database.Settings;
 
-namespace config.Commands.Database;
+namespace config.Features.Database.Commands;
 internal class DisplayDatabaseCommand : Command<DisplayDatabaseSettings>
 {
     public override int Execute(CommandContext context, DisplayDatabaseSettings settings)
