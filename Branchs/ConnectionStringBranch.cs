@@ -1,4 +1,5 @@
 ﻿using config.Commands.ConnectionStrings;
+using config.Utils.Messages.Documentation;
 using Spectre.Console.Cli;
 
 namespace config.Branchs
@@ -7,8 +8,8 @@ namespace config.Branchs
     {
         public static IConfigurator UseConnectionStringsBranch(this IConfigurator app)
         {
-            app.AddCommand<GenerateConnectionStringsCommand>("connection")
-                .WithDescription("Generate connection strings");
+            app.AddCommand<GenerateConnectionStringsCommand>(DocumentationMsg.COMMAND002)
+                .WithDescription(DescriptionMsg.COMMAND002);
 
             return app;
         }
