@@ -1,4 +1,4 @@
-﻿using config.Models.DTOs;
+﻿using config.DTOs;
 using config.Singleton;
 using config.Utils.Display;
 using config.Utils.Messages;

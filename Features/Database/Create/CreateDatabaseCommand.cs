@@ -1,4 +1,4 @@
-﻿using config.Models;
+﻿using config.Features.Database.Shared;
 using config.Singleton;
 using config.Utils.Messages;
 
@@ -20,7 +20,7 @@ namespace config.Features.Database.Create
                         AnsiConsole.MarkupLine(DatabasesMsg.INF002);
                         Thread.Sleep(1000);
 
-                        var connection = new Models.Database
+                        var connection = new DatabaseModel
                         {
                             Name = settings.Name,
                             ProviderName = settings.ProviderName,

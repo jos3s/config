@@ -1,5 +1,5 @@
-﻿using config.Features.Settings.Shared;
-using config.Models.DTOs;
+﻿using config.DTOs;
+using config.Features.Settings.Shared;
 using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
@@ -22,7 +22,7 @@ internal class UpdateSettingsCommand : Command<UpdateSettingSettings>
 
         SettingsSingleton.Instance.Update(appSettings);
 
-        RepeatableStatusDisplay.Run(new RepeatableStatusMsg()
+        RepeatableStatusDisplay.Run(new RepeatableStatusMsg
         {
             InitalMsg = SettingsMsg.INF001,
             FinalMsg = SettingsMsg.INF004,

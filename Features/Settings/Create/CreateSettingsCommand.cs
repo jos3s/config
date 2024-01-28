@@ -1,10 +1,10 @@
-﻿using config.Features.Settings.Shared;
-using config.Models;
-using config.Models.DTOs;
+﻿using config.DTOs;
+using config.Features.Settings.Shared;
 using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Messages;
+
 using Spectre.Console.Cli;
 
 namespace config.Features.Settings.Create;

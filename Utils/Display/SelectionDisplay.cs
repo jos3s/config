@@ -1,6 +1,4 @@
-﻿using config.Models.DTOs;
-
-using Spectre.Console;
+﻿using Spectre.Console;
 
 namespace config.Utils.Display;
 internal class SelectionDisplay
