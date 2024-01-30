@@ -61,7 +61,7 @@ namespace config.Utils.Messages {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;add key=&quot;{1}&quot; value=&quot;{1}&quot;/&gt;.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a &lt;add key=&quot;{0}&quot; value=&quot;{1}&quot;/&gt;.
         /// </summary>
         internal static string APPCONFIG {
             get {
