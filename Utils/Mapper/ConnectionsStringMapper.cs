@@ -6,13 +6,16 @@ namespace config.Utils.Mapper
 {
     internal class ConnectionsStringMapper
     {
-        public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance)
+        public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance, bool toFile = false)
         {
             StringBuilder stringBuilder = new();
 
-            var instanceString = $"[darkseagreen4_1]{instance}[/]";
-            var userIdString = $"[darkseagreen4_1]{user}[/]";
-            var passwordString = $"[darkseagreen4_1]{password}[/]";
+            var markupStyle = "[darkseagreen4_1]{0}[/]";
+
+            var instanceString = !toFile ? string.Format(markupStyle, instance) : instance;
+            var userIdString = !toFile ? string.Format(markupStyle, user) : user;
+            var passwordString = !toFile ? string.Format(markupStyle, password) : password;
+
 
             foreach (var connectionLine in connectionLines)
             {
@@ -41,12 +44,13 @@ namespace config.Utils.Mapper
             return stringBuilder.ToString();
         }
 
-        public static string ToJson(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance)
+        public static string ToJson(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance, bool toFile = false)
         {
+            var markupStyle = "[darkseagreen4_1]{0}[/]";
 
-            var instanceString = $"[darkseagreen4_1]{instance}[/]";
-            var userIdString = $"[darkseagreen4_1]{user}[/]";
-            var passwordString = $"[darkseagreen4_1]{password}[/]";
+            var instanceString = !toFile ? string.Format(markupStyle, instance) : instance;
+            var userIdString = !toFile ? string.Format(markupStyle, user) : user;
+            var passwordString = !toFile ? string.Format(markupStyle, password) : password;
 
             StringBuilder stringBuilder = new();
 
