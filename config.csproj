@@ -35,6 +35,11 @@
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DocumentationMsg.resx</DependentUpon>
 		</Compile>
+		<Compile Update="Utils\Messages\FileMsg.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>FileMsg.resx</DependentUpon>
+		</Compile>
 		<Compile Update="Utils\Messages\StringsFormatedMsg.Designer.cs">
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
@@ -64,6 +69,10 @@
 		<EmbeddedResource Update="Utils\Messages\Documentation\DocumentationMsg.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DocumentationMsg.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Utils\Messages\FileMsg.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>FileMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Utils\Messages\StringsFormatedMsg.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
