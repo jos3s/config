@@ -1,6 +1,8 @@
 ﻿using config.Features.Settings.Shared;
 using config.Singleton;
+using config.Transaction;
 using config.Utils.Display;
+using config.Utils.Extensions;
 using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
@@ -16,7 +18,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 
         if (settings.SelectKeys)
         {
-            keys = DisplayMultiSelection(appSettings);
+            keys = MultiSelectDisplay.ExecuteForSettingsGroup(appSettings, "keys");
         }
 
         var strings = CreateListResult(appSettings, keys, settings.Json);
