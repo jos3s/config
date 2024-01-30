@@ -29,5 +29,8 @@ namespace config.Features.ConnectionStrings
         [CommandOption("-j | --json")]
         [DefaultValue(false)]
         public bool JsonFormat { get; set; }
+
+        [CommandOption("-e| --export <PATH>")]
+        public string? ExportPath { get; set; }
     }
 }
