@@ -15,12 +15,16 @@ internal static class CreateFileTRA
 
     public static void WriteLinesInFile(String path, IEnumerable<string> lines)
     {
-        using (StreamWriter sw = new StreamWriter(path))
+        using StreamWriter sw = new StreamWriter(path);
+        foreach (var line in lines)
         {
-            foreach (var line in lines)
-            {
-                sw.WriteLine(line);
-            }
+            sw.WriteLine(line);
         }
+    }
+
+    public static void WriteInFile(String path, string text)
+    {
+        using StreamWriter sw = new StreamWriter(path);
+        sw.Write(text);
     }
 }
