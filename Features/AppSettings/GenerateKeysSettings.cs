@@ -19,4 +19,7 @@ internal class GenerateKeysSettings : BaseSettings
     [DefaultValue(false)]
     [Description("Display each line in turn")]
     public bool DisplayPerLines { get; set; }
+
+    [CommandOption("-e| --export <PATH>")]
+    public string? ExportPath { get ; set; }
 }
