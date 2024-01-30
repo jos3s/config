@@ -23,6 +23,9 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 
         var strings = CreateListResult(appSettings, keys, settings.Json);
 
+        if (!string.IsNullOrEmpty(settings.ExportPath) || !string.IsNullOrWhiteSpace(settings.ExportPath))
+            CreateExportFile(settings, strings);
+
         if (settings.DisplayPerLines)
         {
             RepeatableStatusDisplay.Run(strings,
@@ -40,21 +43,43 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
         return 0;
     }
 
-    private static IEnumerable<string> DisplayMultiSelection(IEnumerable<SettingsGroupModel> appSettings)
+    private static void CreateExportFile(GenerateKeysSettings settings, IEnumerable<string> strings)
     {
-        var multiSelection = new MultiSelectionPrompt<string>()
-            .Title("Select [green]keys[/]:")
-            .Required()
-            .PageSize(10)
-            .InstructionsText("[grey](Press [blue]<space>[/] to toggle a database, " +
-                              "[green]<enter>[/] to accept)[/]");
+        CreateFileTRA.ValidatePath(settings.ExportPath);
 
-        foreach (var group in appSettings)
-        {
-            multiSelection.AddChoiceGroup(group.GroupName, group.Keys.Select(x => x.Key));
-        }
+        settings.ExportPath += @"\appsettings.txt";
 
-        return AnsiConsole.Prompt(multiSelection);
+        AnsiConsole.Status()
+            .Start(FileMsg.INF005, ctx =>
+            {
+                // Simulate some work
+                ctx.Status(FileMsg.INF001);
+                ctx.Spinner(Spinner.Known.Balloon);
+                ctx.SpinnerStyle(Style.Parse("green"));
+                Thread.Sleep(1000);
+
+                // Update the status and spinner
+                ctx.Status(FileMsg.INF002);
+                ctx.Spinner(Spinner.Known.Balloon);
+                ctx.SpinnerStyle(Style.Parse("green"));
+                Thread.Sleep(1000);
+
+
+                ctx.Status(FileMsg.INF003);
+                ctx.Spinner(Spinner.Known.Balloon);
+                ctx.SpinnerStyle(Style.Parse("green"));
+                ctx.Refresh();
+                Thread.Sleep(1000);
+
+                CreateFileTRA.WriteLinesInFile(settings.ExportPath , strings);
+
+                var panel = new Panel(
+                string.Format(FileMsg.INF004, $"[blue]{settings.ExportPath}[/]"))
+                    .Formatted();
+
+                Thread.Sleep(1000);
+                AnsiConsole.Write(panel);
+            });
     }
 
     private IEnumerable<string> CreateListResult(List<SettingsGroupModel> appSettings, IEnumerable<string> keys, bool json)
