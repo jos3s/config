@@ -117,16 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="APPCONFIG" xml:space="preserve">
-    <value>&lt;add key="{0}" value="{1}"/&gt;</value>
+  <data name="EXC001" xml:space="preserve">
+    <value>The specified path doesn't exists</value>
   </data>
-  <data name="APPJSON" xml:space="preserve">
-    <value>"{0}":{1}</value>
+  <data name="INF001" xml:space="preserve">
+    <value>Validating the path...</value>
   </data>
-  <data name="CONNCONFIG" xml:space="preserve">
-    <value>&lt;add name="{0}" providerName="{1}" connectionString="Data Source={2};Initial Catalog={3};User Id={4}; Password={5};Pooling={6};Connect Timeout={7};Aplication Name={8}"/&gt;</value>
+  <data name="INF002" xml:space="preserve">
+    <value>Creating the file...</value>
   </data>
-  <data name="CONNJSON" xml:space="preserve">
-    <value>"{0}":"Data Source={1};Initial Catalog={2};User ID={3};Password={4};Pooling={5};Connect Timeout={6};Application Name={7}"</value>
+  <data name="INF003" xml:space="preserve">
+    <value>Writing to the file...</value>
+  </data>
+  <data name="INF004" xml:space="preserve">
+    <value>File create, in the path: {0}</value>
+  </data>
+  <data name="INF005" xml:space="preserve">
+    <value>Start exporting...</value>
   </data>
 </root>
