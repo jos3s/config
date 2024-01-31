@@ -15,10 +15,10 @@ internal class GenerateKeysSettings : BaseSettings
     [Description("Generate keys for json file")]
     public bool Json { get; set; }
 
-    [CommandOption("--display")]
-    [DefaultValue(false)]
-    [Description("Display each line in turn")]
-    public bool DisplayPerLines { get; set; }
+    [CommandOption("-d|--display")]
+    [DefaultValue(true)]
+    [Description("Display result in terminal")]
+    public bool Display { get; set; }
 
     [CommandOption("-e| --export <PATH>")]
     public string? ExportPath { get ; set; }

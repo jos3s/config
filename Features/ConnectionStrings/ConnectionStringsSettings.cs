@@ -21,10 +21,10 @@ namespace config.Features.ConnectionStrings
         [Description("Select which database connection string will be generated for")]
         public bool SelectDatabases { get; set; }
 
-        [CommandOption("--display")]
-        [DefaultValue(false)]
-        [Description("Display each line in turn")]
-        public bool DisplayStatus { get; set; }
+        [CommandOption("-d|--display")]
+        [DefaultValue(true)]
+        [Description("Display result in the terminal")]
+        public bool Display { get; set; }
 
         [CommandOption("-j | --json")]
         [DefaultValue(false)]

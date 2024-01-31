@@ -38,18 +38,9 @@ namespace config.Features.ConnectionStrings
                        : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance, toFile: true);
 
                     CreateExportFile(settings.ExportPath, lines);
-
                 }
 
-                if (settings.DisplayStatus)
-                {
-                    RepeatableStatusDisplay.Run(output.Split(Environment.NewLine).ToList(),
-                        ConnectionStringsMsg.INF001,
-                        ConnectionStringsMsg.INF002,
-                        ConnectionStringsMsg.INF003
-                    );
-                }
-                else
+                if(settings.Display)
                 {
                     AnsiConsole.MarkupLine(output);
                 }
