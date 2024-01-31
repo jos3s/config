@@ -26,17 +26,9 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
         if (!string.IsNullOrEmpty(settings.ExportPath) || !string.IsNullOrWhiteSpace(settings.ExportPath))
             CreateExportFile(settings, strings);
 
-        if (settings.DisplayPerLines)
-        {
-            RepeatableStatusDisplay.Run(strings,
-                SettingsMsg.INF001,
-                SettingsMsg.INF007,
-                SettingsMsg.INF006);
-        }
-        else
-        {
+        if (settings.Display)
+        { 
             var rows = strings.Select(x => new Text(x));
-
             AnsiConsole.Write(new Rows(rows));
         }
 
