@@ -113,5 +113,14 @@ namespace config.Utils.Messages {
                 return ResourceManager.GetString("INF005", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Configuration files created....
+        /// </summary>
+        internal static string INF006 {
+            get {
+                return ResourceManager.GetString("INF006", resourceCulture);
+            }
+        }
     }
 }

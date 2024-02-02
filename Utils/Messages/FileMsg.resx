@@ -135,4 +135,7 @@
   <data name="INF005" xml:space="preserve">
     <value>Start exporting...</value>
   </data>
+  <data name="INF006" xml:space="preserve">
+    <value>Configuration files created...</value>
+  </data>
 </root>
