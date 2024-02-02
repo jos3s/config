@@ -4,7 +4,7 @@ using config.Features.Database.Shared;
 
 namespace config.Singleton
 {
-    internal class ConnectionStringsSingleton
+    internal class ConnectionStringsSingleton : FileSingleton
     {
         private static ConnectionStringsSingleton _instance { get; set; }
 
@@ -19,6 +19,7 @@ namespace config.Singleton
             get
             {
                 _instance ??= new ConnectionStringsSingleton();
+                ValidateFile(Path);
                 return _instance;
             }
         }
@@ -26,7 +27,9 @@ namespace config.Singleton
         public List<DatabaseModel> Lines()
         {
             string text = File.ReadAllText(Path);
-            Databases = JsonSerializer.Deserialize<List<DatabaseModel>>(text)!;
+            if (!string.IsNullOrEmpty(text) || !string.IsNullOrWhiteSpace(text))
+                Databases = JsonSerializer.Deserialize<List<DatabaseModel>>(text)!;
+            else Databases = new List<DatabaseModel>();
 
             return Databases;
         }
