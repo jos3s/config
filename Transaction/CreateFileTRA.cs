@@ -12,6 +12,19 @@ internal static class CreateFileTRA
             throw new ArgumentException(FileMsg.EXC001);
     }
 
+    public static DirectoryInfo CreateDirectoryIfNotExistes(string path)
+    {
+        var directoryInfo = new DirectoryInfo(path);
+        if (!directoryInfo.Exists)
+            directoryInfo = Directory.CreateDirectory(path);
+
+        return directoryInfo;
+    }
+
+    public static bool FileExistes(string path)
+    {
+        return File.Exists(path);
+    }
 
     public static void WriteLinesInFile(String path, IEnumerable<string> lines)
     {
