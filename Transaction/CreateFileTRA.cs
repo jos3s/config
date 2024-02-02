@@ -21,7 +21,7 @@ internal static class CreateFileTRA
         return directoryInfo;
     }
 
-    public static bool FileExistes(string path)
+    public static bool FileExists(string path)
     {
         return File.Exists(path);
     }
