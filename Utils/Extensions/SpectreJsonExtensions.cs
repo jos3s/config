@@ -2,7 +2,7 @@
 using Spectre.Console.Json;
 
 namespace config.Utils.Extensions;
-internal static class JsonExtensions
+internal static class SpectreJsonExtensions
 {
     public static JsonText StyledJsonText(this JsonText text)
     {
