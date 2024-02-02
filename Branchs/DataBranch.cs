@@ -1,4 +1,5 @@
-﻿using config.Features.Database.Create;
+﻿using config.Features.Data;
+using config.Features.Database.Create;
 using config.Features.Database.Display;
 using config.Features.Database.Remove;
 using config.Features.Settings.Create;
@@ -16,6 +17,9 @@ internal static class DataBranch
         app.AddBranch(DocumentationMsg.BRANCH001, data =>
         {
             data.SetDescription(DescriptionMsg.BRANCH001);
+
+            data.AddCommand<CreateDataFilesCommand>(DocumentationMsg.COMMAND007);
+
 
             data.AddBranch(DocumentationMsg.BRANCH002, database =>
             {
