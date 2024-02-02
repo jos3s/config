@@ -12,13 +12,7 @@
 		<PackageReference Include="Spectre.Console.Cli" Version="0.48.0" />
 		<PackageReference Include="Spectre.Console.Json" Version="0.48.0" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Content Include="AppData\**">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-		</Content>
-	</ItemGroup>
-
+	
 	<ItemGroup>
 		<Compile Update="Utils\Messages\ConnectionStringsMsg.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -34,6 +28,11 @@
 		  <DesignTime>True</DesignTime>
 		  <AutoGen>True</AutoGen>
 		  <DependentUpon>DocumentationMsg.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Utils\Messages\ExceptionMsg.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>ExceptionMsg.resx</DependentUpon>
 		</Compile>
 		<Compile Update="Utils\Messages\FileMsg.Designer.cs">
 		  <DesignTime>True</DesignTime>
@@ -69,6 +68,10 @@
 		<EmbeddedResource Update="Utils\Messages\Documentation\DocumentationMsg.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
 		  <LastGenOutput>DocumentationMsg.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Utils\Messages\ExceptionMsg.resx">
+		  <Generator>ResXFileCodeGenerator</Generator>
+		  <LastGenOutput>ExceptionMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 		<EmbeddedResource Update="Utils\Messages\FileMsg.resx">
 		  <Generator>ResXFileCodeGenerator</Generator>
