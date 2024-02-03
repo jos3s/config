@@ -88,6 +88,15 @@ namespace config.Utils.Messages.Documentation {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a configuration.
+        /// </summary>
+        internal static string BRANCH004 {
+            get {
+                return ResourceManager.GetString("BRANCH004", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a appsettings.
         /// </summary>
         internal static string COMMAND001 {
@@ -142,11 +151,20 @@ namespace config.Utils.Messages.Documentation {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a configuration.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a create.
         /// </summary>
         internal static string COMMAND007 {
             get {
                 return ResourceManager.GetString("COMMAND007", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a reset.
+        /// </summary>
+        internal static string COMMAND008 {
+            get {
+                return ResourceManager.GetString("COMMAND008", resourceCulture);
             }
         }
     }

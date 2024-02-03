@@ -140,5 +140,14 @@ namespace config.Utils.Messages.Documentation {
                 return ResourceManager.GetString("COMMAND006", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Create date files for the application.
+        /// </summary>
+        internal static string COMMAND007 {
+            get {
+                return ResourceManager.GetString("COMMAND007", resourceCulture);
+            }
+        }
     }
 }
