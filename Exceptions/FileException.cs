@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization;
-
-namespace config.Exceptions;
+﻿namespace config.Exceptions;
 internal class FileException : Exception
 {
     public FileException()

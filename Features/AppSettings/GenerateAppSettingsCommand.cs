@@ -4,6 +4,7 @@ using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Extensions;
 using config.Utils.Messages;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -27,7 +28,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
             CreateExportFile(settings, strings);
 
         if (settings.Display)
-        { 
+        {
             var rows = strings.Select(x => new Text(x));
             AnsiConsole.Write(new Rows(rows));
         }
@@ -63,7 +64,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
                 ctx.Refresh();
                 Thread.Sleep(1000);
 
-                CreateFileTRA.WriteLinesInFile(settings.ExportPath , strings);
+                CreateFileTRA.WriteLinesInFile(settings.ExportPath, strings);
 
                 var panel = new Panel(
                 string.Format(FileMsg.INF004, $"[blue]{settings.ExportPath}[/]"))

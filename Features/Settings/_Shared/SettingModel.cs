@@ -1,5 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using config.Utils.Messages;
+﻿using config.Utils.Messages;
+
+using System.Text.Json.Serialization;
 
 namespace config.Features.Settings.Shared;
 internal class SettingModel

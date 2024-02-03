@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
-using config.Features._Shared;
+﻿using config.Features._Shared;
+
 using Spectre.Console.Cli;
+
+using System.ComponentModel;
 
 namespace config.Features.Settings.Display;
 internal class DisplaySettingSettings : BaseSettings

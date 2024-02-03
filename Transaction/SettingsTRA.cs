@@ -7,7 +7,7 @@ internal class SettingsTRA
     {
         return groups.Select(x => x.GroupName);
     }
-    
+
     public static IEnumerable<string> GetGroupOptions(SettingsGroupModel group)
     {
         return group.Keys.Select(x => x.Key);

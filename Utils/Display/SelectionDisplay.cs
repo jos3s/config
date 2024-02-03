@@ -11,7 +11,7 @@ internal class SelectionDisplay
             .PageSize(pageSize)
             .MoreChoicesText($"[grey](Move up and down to reveal more {nameOfOptions})[/]")
             .AddChoices(options);
-       
+
         return AnsiConsole.Prompt(selectionPrompt);
     }
 
@@ -19,10 +19,10 @@ internal class SelectionDisplay
     {
         var selectionPrompt = new SelectionPrompt<string>()
             .Title($"Select [green]{nameOfOptions}[/]:")
-            .PageSize(options.Count() > 3? options.Count() : 3)
+            .PageSize(options.Count() > 3 ? options.Count() : 3)
             .MoreChoicesText($"[grey](Move up and down to reveal more {nameOfOptions})[/]")
             .AddChoices(options);
-       
+
         return AnsiConsole.Prompt(selectionPrompt);
     }
 }

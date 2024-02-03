@@ -35,7 +35,7 @@ internal static class DataBranch
                 database.AddCommand<DisplayDatabaseCommand>(DocumentationMsg.COMMAND006)
                     .WithDescription(string.Format(DescriptionMsg.COMMAND006, "all databases"))
                     .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH002, DocumentationMsg.COMMAND006)
-                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH002, DocumentationMsg.COMMAND006, "-j"); 
+                    .WithExample(DocumentationMsg.BRANCH001, DocumentationMsg.BRANCH002, DocumentationMsg.COMMAND006, "-j");
             });
 
             data.AddBranch(DocumentationMsg.BRANCH003, settings =>

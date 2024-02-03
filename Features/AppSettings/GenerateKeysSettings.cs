@@ -1,6 +1,8 @@
-﻿using System.ComponentModel;
-using config.Features._Shared;
+﻿using config.Features._Shared;
+
 using Spectre.Console.Cli;
+
+using System.ComponentModel;
 
 namespace config.Features.AppSettings;
 internal class GenerateKeysSettings : BaseSettings
@@ -21,5 +23,5 @@ internal class GenerateKeysSettings : BaseSettings
     public bool Display { get; set; }
 
     [CommandOption("-e| --export <PATH>")]
-    public string? ExportPath { get ; set; }
+    public string? ExportPath { get; set; }
 }
