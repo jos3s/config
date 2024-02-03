@@ -1,9 +1,11 @@
 ﻿using config.Singleton;
+using config.Utils.Extensions;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Json;
+
 using System.Text.Json;
-using config.Utils.Extensions;
 
 namespace config.Features.Settings.Display;
 internal class DisplaySettingsCommand : Command<DisplaySettingSettings>

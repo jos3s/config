@@ -1,8 +1,10 @@
 ﻿using config.Singleton;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 using Spectre.Console.Json;
 using Spectre.Console.Rendering;
+
 using System.Text.Json;
 
 namespace config.Features.Database.Display;

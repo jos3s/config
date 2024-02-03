@@ -1,10 +1,11 @@
 ﻿using config.DTOs;
+
 using Spectre.Console;
 
 namespace config.Utils.Display;
 internal class RepeatableStatusDisplay
 {
-    public static int Run(IEnumerable<string> strings, string initialMsg,string repeatableMsg, string finalMsg, int sleep = 1000)
+    public static int Run(IEnumerable<string> strings, string initialMsg, string repeatableMsg, string finalMsg, int sleep = 1000)
     {
         AnsiConsole.Status()
             .Start(initialMsg, ctx =>

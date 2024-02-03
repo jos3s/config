@@ -1,6 +1,7 @@
-﻿using System.Reflection;
+﻿using config.Features.Database.Shared;
+
+using System.Reflection;
 using System.Text.Json;
-using config.Features.Database.Shared;
 
 namespace config.Singleton
 {
