@@ -9,7 +9,7 @@ using Spectre.Console.Cli;
 namespace config.Features.Data;
 internal class CreateDataFilesCommand : Command<BaseSettings>
 {
-    private string _baseDirectory = System.AppDomain.CurrentDomain.BaseDirectory + "AppData";
+    private string _baseDirectory = AppDomain.CurrentDomain.BaseDirectory + "AppData";
 
     private string _settingsFile = @"\Settings.json";
 
@@ -23,11 +23,15 @@ internal class CreateDataFilesCommand : Command<BaseSettings>
         var settingsExists = CreateFileTRA.FileExists(_baseDirectory + _settingsFile);
         var databasesExists = CreateFileTRA.FileExists(_baseDirectory + _databasesFile);
 
+        var filesToCreate = new List<string>();
+
         if (!settingsExists)
-            File.Create(directoryInfo.FullName + @"\Settings.json");
+            filesToCreate.Add(directoryInfo.FullName + @"\Settings.json");
 
         if (!databasesExists)
-            File.Create(directoryInfo.FullName + @"\Databases.json");
+            filesToCreate.Add(directoryInfo.FullName + @"\Databases.json");
+
+        Array.ForEach(filesToCreate.ToArray(), CreateFile);
 
         if (!settingsExists || !databasesExists)
             new Panel(new Text(FileMsg.INF006, new Style(Color.Green))).Formatted().Write();
@@ -35,6 +39,11 @@ internal class CreateDataFilesCommand : Command<BaseSettings>
             new Panel(new Text("Operation not completed: Configuration files already exist.", new Style(Color.Yellow))).Formatted().Write();
 
         return 0;
+    }
+
+    private static void CreateFile(string path)
+    {
+        File.Create(path);
     }
 }
 
