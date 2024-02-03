@@ -1,10 +1,13 @@
-﻿using config.Features.Settings.Shared;
+﻿using config.Exceptions;
+using config.Features.Settings.Shared;
+using config.Utils.Messages;
+
 using System.Reflection;
 using System.Text.Json;
 
-namespace config.Singleton
+namespace config.Singleton 
 {
-    internal class SettingsSingleton
+    internal class SettingsSingleton : FileSingleton
     {
         private static SettingsSingleton _instance { get; set; }
 
@@ -19,7 +22,9 @@ namespace config.Singleton
             get
             {
                 _instance ??= new SettingsSingleton();
-
+                
+                ValidateFile(Path);
+                
                 return _instance;
             }
         }
@@ -27,8 +32,10 @@ namespace config.Singleton
         public List<SettingsGroupModel> Lines()
         {
             var text = File.ReadAllText(Path);
-            Settings = JsonSerializer.Deserialize<List<SettingsGroupModel>>(text)!;
-
+            if(!string.IsNullOrEmpty(text) || !string.IsNullOrWhiteSpace(text))
+                Settings = JsonSerializer.Deserialize<List<SettingsGroupModel>>(text)!;
+            else Settings = new List<SettingsGroupModel>();
+            
             return Settings;
         }
 

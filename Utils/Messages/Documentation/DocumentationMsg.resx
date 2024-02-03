@@ -126,6 +126,9 @@
   <data name="BRANCH003" xml:space="preserve">
     <value>settings</value>
   </data>
+  <data name="BRANCH004" xml:space="preserve">
+    <value>configuration</value>
+  </data>
   <data name="COMMAND001" xml:space="preserve">
     <value>appsettings</value>
   </data>
@@ -143,5 +146,11 @@
   </data>
   <data name="COMMAND006" xml:space="preserve">
     <value>display</value>
+  </data>
+  <data name="COMMAND007" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="COMMAND008" xml:space="preserve">
+    <value>reset</value>
   </data>
 </root>

@@ -117,25 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="EXC001" xml:space="preserve">
-    <value>The specified path doesn't exists</value>
-  </data>
-  <data name="INF001" xml:space="preserve">
-    <value>Validating the path...</value>
-  </data>
-  <data name="INF002" xml:space="preserve">
-    <value>Creating the file...</value>
-  </data>
-  <data name="INF003" xml:space="preserve">
-    <value>Writing to the file...</value>
-  </data>
-  <data name="INF004" xml:space="preserve">
-    <value>File create, in the path: {0}</value>
-  </data>
-  <data name="INF005" xml:space="preserve">
-    <value>Start exporting...</value>
-  </data>
-  <data name="INF006" xml:space="preserve">
-    <value>Configuration files created...</value>
+  <data name="EXC0001" xml:space="preserve">
+    <value>Configuration file not found.</value>
   </data>
 </root>

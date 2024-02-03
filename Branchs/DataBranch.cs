@@ -1,4 +1,5 @@
-﻿using config.Features.Database.Create;
+﻿using config.Features.Data;
+using config.Features.Database.Create;
 using config.Features.Database.Display;
 using config.Features.Database.Remove;
 using config.Features.Settings.Create;
@@ -6,6 +7,7 @@ using config.Features.Settings.Display;
 using config.Features.Settings.Remove;
 using config.Features.Settings.Update;
 using config.Utils.Messages.Documentation;
+
 using Spectre.Console.Cli;
 
 namespace config.Branchs;
@@ -16,6 +18,9 @@ internal static class DataBranch
         app.AddBranch(DocumentationMsg.BRANCH001, data =>
         {
             data.SetDescription(DescriptionMsg.BRANCH001);
+
+            data.AddCommand<CreateDataFilesCommand>(DocumentationMsg.COMMAND007)
+                .WithDescription(DescriptionMsg.COMMAND007);
 
             data.AddBranch(DocumentationMsg.BRANCH002, database =>
             {

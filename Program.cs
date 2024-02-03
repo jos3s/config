@@ -1,20 +1,24 @@
 ﻿using config.Branchs;
+using config.Exceptions;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
-var app = new CommandApp();
-
-app.Configure(config =>
-{
-	config
-        .UseConnectionStringsBranch()
-        .UseAppSettingsBranch()
-        .UseDataBranch();
-});
-
 try
 {
-	app.Run(args);
+    var app = new CommandApp();
+
+    app.Configure(config =>
+    {
+        config
+            .UseConnectionStringsBranch()
+            .UseAppSettingsBranch()
+            .UseDataBranch();
+
+        config.SetExceptionHandler(ExceptionHandlers.Handler);
+    });
+
+    app.Run(args);
 }
 catch (Exception ex)
 {
