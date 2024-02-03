@@ -33,7 +33,7 @@ dotnet run -- -h
 ## Como contribuir
 
 Para contribuir com o projeto, você pode solicitar alguma correção ou novo recurso usando as **issues** que pode levar 
-a um **pull requests** para o desenvolvimento do que foi discutido na **issue**.
+a um **pull requests** para o desenvolvimento do que foi discutido na **issue**. Leia mais [aqui.](./CONTRIBUTING.md)
 
 ## Licença
 Direitos Autorais © José Ulisses Silva Macedo Oliveira
