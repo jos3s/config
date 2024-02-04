@@ -18,14 +18,7 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
     {
         try
         {
-            var databases = ConnectionStringsSingleton.Instance.Lines();
-
-            var databasesNames = databases.Select(x => x.Name);
-
-            if (settings.SelectDatabases)
-                databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
-
-            var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
+            IEnumerable<DatabaseModel> databasesSelected = selectDatabases(settings);
 
             Func<IEnumerable<DatabaseModel>, ConnectionInfoDTO, bool, string> toLines = !settings.JsonFormat
                 ? ConnectionsStringMapper.ToConfig
@@ -50,6 +43,20 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
         {
             throw;
         }
+    }
+
+    private static IEnumerable<DatabaseModel> selectDatabases(ConnectionStringsSettings settings)
+    {
+        var databases = ConnectionStringsSingleton.Instance.Lines();
+
+        var databasesNames = databases.Select(x => x.Name);
+
+        if (settings.SelectDatabases)
+            databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
+
+        var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
+
+        return databasesSelected;
     }
 
     private static void CreateExportFile(string exportPath, string text)
