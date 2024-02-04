@@ -43,7 +43,7 @@ internal class CreateDataFilesCommand : Command<BaseSettings>
 
     private static void CreateFile(string path)
     {
-        File.Create(path);
+        File.AppendAllText(path, "[]");
     }
 }
 
