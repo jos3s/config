@@ -1,5 +1,6 @@
 ﻿using config.DTOs;
-﻿using config.Singleton;
+using config.Features.Database.Shared;
+using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Extensions;
@@ -22,30 +23,26 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
             var databasesNames = databases.Select(x => x.Name);
 
             if (settings.SelectDatabases)
-            {
                 databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
-            }
 
             var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
 
-            var output = !settings.JsonFormat
-               ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance)
-               : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
+            Func<IEnumerable<DatabaseModel>, ConnectionInfoDTO, bool, string> toLines = !settings.JsonFormat
+                ? ConnectionsStringMapper.ToConfig
+                : ConnectionsStringMapper.ToJson;
+
             var connectionInfo = new ConnectionInfoDTO(settings.Instance, settings.User, settings.Password);
+
+            var output = toLines(databasesSelected, connectionInfo, false);
 
             if (!string.IsNullOrEmpty(settings.ExportPath) || !string.IsNullOrWhiteSpace(settings.ExportPath))
             {
-                var lines = !settings.JsonFormat
-                   ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance, toFile: true)
-                   : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance, toFile: true);
-
+                var lines = toLines(databasesSelected, connectionInfo, true);
                 CreateExportFile(settings.ExportPath, lines);
             }
 
             if (settings.Display)
-            {
                 AnsiConsole.MarkupLine(output);
-            }
 
             return 0;
         }
