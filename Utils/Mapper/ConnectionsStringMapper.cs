@@ -1,4 +1,5 @@
-﻿using config.Features.Database.Shared;
+﻿using config.DTOs;
+using config.Features.Database.Shared;
 using config.Utils.Messages;
 
 using System.Text;
@@ -7,15 +8,15 @@ namespace config.Utils.Mapper;
 
 internal class ConnectionsStringMapper
 {
-    public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance, bool toFile = false)
+    public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
     {
         StringBuilder stringBuilder = new();
 
         var markupStyle = "[darkseagreen4_1]{0}[/]";
 
-        var instanceString = !toFile ? string.Format(markupStyle, instance) : instance;
-        var userIdString = !toFile ? string.Format(markupStyle, user) : user;
-        var passwordString = !toFile ? string.Format(markupStyle, password) : password;
+        var instanceString = !toFile ? string.Format(markupStyle, connectionInfo.Instance) : connectionInfo.Instance;
+        var userIdString = !toFile ? string.Format(markupStyle, connectionInfo.User) : connectionInfo.User;
+        var passwordString = !toFile ? string.Format(markupStyle, connectionInfo.Password) : connectionInfo.Password;
 
 
         foreach (var connectionLine in connectionLines)
@@ -45,13 +46,13 @@ internal class ConnectionsStringMapper
         return stringBuilder.ToString();
     }
 
-    public static string ToJson(IEnumerable<DatabaseModel> connectionLines, string user, string password, string instance, bool toFile = false)
+    public static string ToJson(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
     {
         var markupStyle = "[darkseagreen4_1]{0}[/]";
 
-        var instanceString = !toFile ? string.Format(markupStyle, instance) : instance;
-        var userIdString = !toFile ? string.Format(markupStyle, user) : user;
-        var passwordString = !toFile ? string.Format(markupStyle, password) : password;
+        var instanceString = !toFile ? string.Format(markupStyle, connectionInfo.Instance) : connectionInfo.Instance;
+        var userIdString = !toFile ? string.Format(markupStyle, connectionInfo.User) : connectionInfo.User;
+        var passwordString = !toFile ? string.Format(markupStyle, connectionInfo.Password) : connectionInfo.Password;
 
         StringBuilder stringBuilder = new();
 

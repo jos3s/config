@@ -1,4 +1,6 @@
-﻿using config.Singleton;
+﻿using config.DTOs;
+using config.Features.Database.Shared;
+using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
 using config.Utils.Extensions;
@@ -16,34 +18,24 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
     {
         try
         {
-            var databases = ConnectionStringsSingleton.Instance.Lines();
+            IEnumerable<DatabaseModel> databasesSelected = selectDatabases(settings);
 
-            var databasesNames = databases.Select(x => x.Name);
+            Func<IEnumerable<DatabaseModel>, ConnectionInfoDTO, bool, string> toLines = !settings.JsonFormat
+                ? ConnectionsStringMapper.ToConfig
+                : ConnectionsStringMapper.ToJson;
 
-            if (settings.SelectDatabases)
-            {
-                databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
-            }
+            var connectionInfo = new ConnectionInfoDTO(settings.Instance, settings.User, settings.Password);
 
-            var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
-
-            var output = !settings.JsonFormat
-               ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance)
-               : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
+            var output = toLines(databasesSelected, connectionInfo, false);
 
             if (!string.IsNullOrEmpty(settings.ExportPath) || !string.IsNullOrWhiteSpace(settings.ExportPath))
             {
-                var lines = !settings.JsonFormat
-                   ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance, toFile: true)
-                   : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance, toFile: true);
-
+                var lines = toLines(databasesSelected, connectionInfo, true);
                 CreateExportFile(settings.ExportPath, lines);
             }
 
             if (settings.Display)
-            {
                 AnsiConsole.MarkupLine(output);
-            }
 
             return 0;
         }
@@ -51,6 +43,20 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
         {
             throw;
         }
+    }
+
+    private static IEnumerable<DatabaseModel> selectDatabases(ConnectionStringsSettings settings)
+    {
+        var databases = ConnectionStringsSingleton.Instance.Lines();
+
+        var databasesNames = databases.Select(x => x.Name);
+
+        if (settings.SelectDatabases)
+            databasesNames = MultiSelectDisplay.Execute(databases.Select(x => x.Name), "databases");
+
+        var databasesSelected = DatabasesTRA.GetConnectionLinesByNames(databasesNames, databases);
+
+        return databasesSelected;
     }
 
     private static void CreateExportFile(string exportPath, string text)
@@ -81,8 +87,6 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
                 ctx.Refresh();
                 Thread.Sleep(1000);
 
-
-                text = text.Replace("[]", "").Replace("[/]", "");
                 CreateFileTRA.WriteInFile(exportPath, text);
 
                 var panel = new Panel(
@@ -93,5 +97,4 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
                 AnsiConsole.Write(panel);
             });
     }
-
 }
