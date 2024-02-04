@@ -1,3 +1,4 @@
+﻿using config.DTOs;
 ﻿using config.Singleton;
 using config.Transaction;
 using config.Utils.Display;
@@ -30,6 +31,7 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
             var output = !settings.JsonFormat
                ? ConnectionsStringMapper.ToConfig(databasesSelected, settings.User, settings.Password, settings.Instance)
                : ConnectionsStringMapper.ToJson(databasesSelected, settings.User, settings.Password, settings.Instance);
+            var connectionInfo = new ConnectionInfoDTO(settings.Instance, settings.User, settings.Password);
 
             if (!string.IsNullOrEmpty(settings.ExportPath) || !string.IsNullOrWhiteSpace(settings.ExportPath))
             {
@@ -93,5 +95,4 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
                 AnsiConsole.Write(panel);
             });
     }
-
 }
