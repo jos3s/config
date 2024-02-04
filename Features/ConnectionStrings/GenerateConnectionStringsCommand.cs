@@ -87,8 +87,6 @@ internal class GenerateConnectionStringsCommand : Command<ConnectionStringsSetti
                 ctx.Refresh();
                 Thread.Sleep(1000);
 
-
-                text = text.Replace("[]", "").Replace("[/]", "");
                 CreateFileTRA.WriteInFile(exportPath, text);
 
                 var panel = new Panel(
