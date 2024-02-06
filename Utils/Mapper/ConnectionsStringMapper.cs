@@ -22,7 +22,6 @@ internal class ConnectionsStringMapper
         foreach (var connectionLine in connectionLines)
         {
             stringBuilder.Append(ToConfigLine(connectionLine, instanceString, userIdString, passwordString));
-            stringBuilder.Append(",");
             stringBuilder.AppendLine();
         }
 
@@ -72,7 +71,7 @@ internal class ConnectionsStringMapper
 
         stringBuilder.Append(string.Format(StringsFormatedMsg.CONNJSON,
             connectionLine.Name,
-            instanceString,
+            instanceString.Replace(@"\", @"\\"),
             connectionLine.InitalCatalog,
             userIdString,
             passwordString,
