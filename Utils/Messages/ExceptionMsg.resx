@@ -120,4 +120,7 @@
   <data name="EXC0001" xml:space="preserve">
     <value>Configuration file not found.</value>
   </data>
+  <data name="EXC0002" xml:space="preserve">
+    <value>Specified path does not exist: {0}</value>
+  </data>
 </root>
