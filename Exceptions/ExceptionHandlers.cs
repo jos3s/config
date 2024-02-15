@@ -8,7 +8,7 @@ internal static class ExceptionHandlers
 {
     public static void Handler(Exception ex)
     {
-        if (ex is FileException)
+        if (ex is AppDataException)
         {
             var texts = new List<Text>
                 {
