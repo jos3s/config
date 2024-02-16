@@ -124,7 +124,6 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
         }
     }
 
-
     private static void OverwriteAppSettings(string filePath, IEnumerable<string> appSettings, bool isJson)
     {
         var lines = File.ReadAllText(filePath);
@@ -188,5 +187,4 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 
         File.WriteAllLines(filePath, newLines);
     }
-
 }
