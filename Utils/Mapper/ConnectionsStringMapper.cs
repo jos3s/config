@@ -8,6 +8,29 @@ namespace config.Utils.Mapper;
 
 internal class ConnectionsStringMapper
 {
+    public static List<string> ToConfigList(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
+    {
+        StringBuilder stringBuilder = new();
+
+        var markupStyle = "[darkseagreen4_1]{0}[/]";
+
+        var instanceString = !toFile ? string.Format(markupStyle, connectionInfo.Instance) : connectionInfo.Instance;
+        var userIdString = !toFile ? string.Format(markupStyle, connectionInfo.User) : connectionInfo.User;
+        var passwordString = !toFile ? string.Format(markupStyle, connectionInfo.Password) : connectionInfo.Password;
+
+
+        var toConfigList = new List<string>();
+        for (int i = 0; i < connectionLines.Count(); i++)
+        {
+            toConfigList.Add(
+                ToConfigLine(connectionLines.ElementAt(i), instanceString, userIdString, passwordString)
+                + $"{(i == connectionLines.Count() - 1 ? ',' : "")}"
+            );
+        }
+
+        return toConfigList;
+    }
+
     public static string ToConfig(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
     {
         StringBuilder stringBuilder = new();
@@ -21,9 +44,7 @@ internal class ConnectionsStringMapper
 
         foreach (var connectionLine in connectionLines)
         {
-            stringBuilder.Append(ToConfigLine(connectionLine, instanceString, userIdString, passwordString));
-            stringBuilder.Append(",");
-            stringBuilder.AppendLine();
+            stringBuilder.AppendLine(ToConfigLine(connectionLine, instanceString, userIdString, passwordString));
         }
 
         return stringBuilder.ToString();
@@ -44,6 +65,29 @@ internal class ConnectionsStringMapper
             connectionLine.ConnectTimeout,
             connectionLine.AplicationName));
         return stringBuilder.ToString();
+    }
+
+    public static List<string> ToJsonList(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
+    {
+        StringBuilder stringBuilder = new();
+
+        var markupStyle = "[darkseagreen4_1]{0}[/]";
+
+        var instanceString = !toFile ? string.Format(markupStyle, connectionInfo.Instance) : connectionInfo.Instance;
+        var userIdString = !toFile ? string.Format(markupStyle, connectionInfo.User) : connectionInfo.User;
+        var passwordString = !toFile ? string.Format(markupStyle, connectionInfo.Password) : connectionInfo.Password;
+
+
+        var toJsonList = new List<string>();
+        for (int i = 0; i < connectionLines.Count(); i++)
+        {
+            toJsonList.Add(
+                ToJsonLine(connectionLines.ElementAt(i), instanceString, userIdString, passwordString)
+                + $"{(i == connectionLines.Count() - 1 ? ',' : "")}"
+            );
+        }
+
+        return toJsonList;
     }
 
     public static string ToJson(IEnumerable<DatabaseModel> connectionLines, ConnectionInfoDTO connectionInfo, bool toFile = false)
