@@ -29,8 +29,17 @@ internal class ConnectionStringsSettings : BaseSettings
 
     [CommandOption("-j | --json")]
     [DefaultValue(false)]
-    public bool JsonFormat { get; set; }
+    public bool Json { get; set; }
 
     [CommandOption("-e| --export <PATH>")]
     public string? ExportPath { get; set; }
+
+    [CommandOption("--search <PATH>")]
+    [Description("Directory to search appsettings.json")]
+    public string SearchDirectory { get; set; } = string.Empty;
+
+    [CommandOption("-o|--overwrite")]
+    [DefaultValue(false)]
+    [Description("Overwrite the values of app settings")]
+    public bool Overwrite { get; set; }
 }
