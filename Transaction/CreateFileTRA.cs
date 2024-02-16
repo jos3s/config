@@ -40,4 +40,11 @@ internal static class CreateFileTRA
         using StreamWriter sw = new StreamWriter(path);
         sw.Write(text);
     }
+
+    public static void WriteInFile(String path, IEnumerable<string> textLines)
+    {
+        using StreamWriter sw = new StreamWriter(path);
+        foreach (var line in textLines)
+            sw.WriteLine(line);
+    }
 }
