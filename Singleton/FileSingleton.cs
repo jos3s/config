@@ -10,7 +10,7 @@ internal abstract class FileSingleton
 
         if (!existis)
         {
-            throw new FileException(ExceptionMsg.EXC0001);
+            throw new AppDataException(ExceptionMsg.EXC0001);
         }
     }
 }

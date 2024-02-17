@@ -1,4 +1,5 @@
 ﻿using config.Utils.Extensions;
+using config.Utils.Messages;
 using config.Utils.Messages.Documentation;
 
 using Spectre.Console;
@@ -8,7 +9,7 @@ internal static class ExceptionHandlers
 {
     public static void Handler(Exception ex)
     {
-        if (ex is FileException)
+        if (ex is AppDataException)
         {
             var texts = new List<Text>
                 {
@@ -17,6 +18,10 @@ internal static class ExceptionHandlers
                 };
 
             new Panel(new Rows(texts)).Formatted().Write();
+        }
+        else if(ex is DirectoryNotFoundException)
+        {
+            new Panel(new Text(string.Format(ExceptionMsg.EXC0002, ex.Message), new Style(Color.Red))).Formatted().Write();
         }
         else
         {
