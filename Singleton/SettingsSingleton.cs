@@ -1,6 +1,6 @@
 ﻿using config.Features.Settings.Shared;
+using config.Utils;
 
-using System.Reflection;
 using System.Text.Json;
 
 namespace config.Singleton;
@@ -9,7 +9,7 @@ internal class SettingsSingleton : FileSingleton
 {
     private static SettingsSingleton _instance { get; set; }
 
-    private static string Path = $@"{System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\AppData\Settings.json";
+    private static readonly string Path = ConfigPathHelper.SettingsPath;
 
     private List<SettingsGroupModel> Settings { get; set; }
 
