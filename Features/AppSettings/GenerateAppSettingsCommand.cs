@@ -8,16 +8,17 @@ using config.Utils.Messages;
 using Spectre.Console;
 using Spectre.Console.Cli;
 
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
 namespace config.Features.AppSettings;
 internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 {
+    private static List<SettingsGroupModel> appSettings = SettingsSingleton.Instance.Lines();
+    
     public override int Execute(CommandContext context, GenerateKeysSettings settings)
     {
-        var appSettings = SettingsSingleton.Instance.Lines();
-
         var keys = appSettings.SelectMany(x => x.Keys.Select(x => x.Key));
 
         if (settings.SelectKeys)
@@ -38,7 +39,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 
         if (!string.IsNullOrEmpty(settings.SearchDirectory) || !string.IsNullOrWhiteSpace(settings.SearchDirectory))
         {
-            WriteInAppSettingsFile(settings, strings);
+            WriteInAppSettingsFile(settings, keys);
             new Panel(new Text("Successful operations")).Formatted().Write();
         }
 
@@ -85,7 +86,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
             });
     }
 
-    private IEnumerable<string> CreateListResult(List<SettingsGroupModel> appSettings, IEnumerable<string> keys, bool json)
+    private static IEnumerable<string> CreateListResult(List<SettingsGroupModel> appSettings, IEnumerable<string> keys, bool json)
     {
         var output = new List<string>();
 
@@ -100,7 +101,7 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
         return output;
     }
 
-    private static void WriteInAppSettingsFile(GenerateKeysSettings settings, IEnumerable<string> strings)
+    private static void WriteInAppSettingsFile(GenerateKeysSettings settings, IEnumerable<string> keys)
     {
         var dir = new DirectoryInfo(settings.SearchDirectory);
 
@@ -115,16 +116,17 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
 
         var filesSelected = MultiSelectDisplay.Execute(filesPath, "AppSettings");
 
+        var newKeys = CreateListResult(appSettings, keys, settings.Json).ToList();
 
-        Action<string, IEnumerable<string>, bool> func = settings.Overwrite ? OverwriteAppSettings : WriteMoreAppSettings;
+
+
+        Action<string, List<string>, List<string>, bool> func = settings.OverwriteAll ? OverwriteAppSettings : WriteMoreAppSettings;
 
         foreach (var filePath in filesSelected)
-        {
-            func(filePath, strings, settings.Json);
-        }
+            func(filePath, keys.ToList(), newKeys, settings.Json);
     }
 
-    private static void OverwriteAppSettings(string filePath, IEnumerable<string> appSettings, bool isJson)
+    private static void OverwriteAppSettings(string filePath, List<string> keys, List<string> newKeys, bool isJson)
     {
         var lines = File.ReadAllText(filePath);
 
@@ -133,28 +135,23 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
             : @"<appSettings>([\s\S]*?)<\/appSettings>";
 
         StringBuilder sb = new StringBuilder();
-        if (isJson)
-            sb.AppendLine("\"AppSettings\" : {");
-        else
-            sb.AppendLine("<appSettings>");
 
-        for (int i = 0; i < appSettings.Count(); i++)
+        sb.AppendLine(isJson ? "\"AppSettings\" : {" : "<appSettings>");
+
+        for (int i = 0; i < newKeys.Count; i++)
         {
-            if (i == appSettings.Count() - 1)
-                sb.AppendLine($"\t\t{appSettings.ElementAt(i)}");
-            else
-                sb.AppendLine($"\t\t{appSettings.ElementAt(i)}{isJson: ',' : ''}");
+            var line = newKeys.ElementAt(i);
+            var finalChar = isJson ? "," : "";
+            sb.AppendLine($"{Environment.NewLine}{Environment.NewLine}{line}{finalChar}");
         }
-        if (isJson)
-            sb.Append("\t}");
-        else
-            sb.AppendLine("</appSettings>");
 
-        string novoTexto = Regex.Replace(lines, regexPattern, sb.ToString(), RegexOptions.IgnoreCase);
+        sb.Append(isJson ? "\t}" : "</appSettings>");
+
+        string novoTexto = Regex.Replace(lines, regexPattern,sb.ToString(), RegexOptions.IgnoreCase);
         File.WriteAllText(filePath, novoTexto);
     }
 
-    private static void WriteMoreAppSettings(string filePath, IEnumerable<string> appSettings, bool isJson)
+    private static void WriteMoreAppSettings(string filePath, List<string> keys, List<string> newKeys, bool isJson)
     {
         var lines = File.ReadAllLines(filePath).ToList();
 
@@ -166,24 +163,42 @@ internal class GenerateAppSettingsCommand : Command<GenerateKeysSettings>
                 startAppSettings = i;
                 break;
             }
-
         }
 
-        List<string> newAppSettings = new List<string>();
-        for (int i = 0; i < appSettings.Count(); i++)
+        var duplicatedKeys = new List<string>();
+        for (int i = 0; i < lines.Count; i++)
         {
-            if (i == appSettings.Count() - 1)
-                newAppSettings.Add($"\t\t{appSettings.ElementAt(i)}");
-            else
-                newAppSettings.Add($"\t\t{appSettings.ElementAt(i)}{(isJson ? ',' : "")}");
+            for (int j = 0; j < keys.Count; j++)
+            {
+                if (lines[i].Contains(keys[j]))
+                {
+                    duplicatedKeys.Add(keys[j]);
+                    var line = newKeys.Where(x => x.Contains(keys[j])).First();
+                    var finalChar = lines[i].Contains(',') ? "," : "";
+                    lines[i] = ($"{Environment.NewLine}{Environment.NewLine}{line}{finalChar}");
+                }
+            }
         }
 
-        var newLines = lines.Take(startAppSettings + 1).ToList();
-        newLines.AddRange(newAppSettings);
+        keys.RemoveAll(x => duplicatedKeys.Contains(x));
 
-        var linesAfter = lines.Skip(startAppSettings + 1).ToList();
-        newLines.AddRange(linesAfter);
+        var newLines = new List<string>();
 
+        if (keys.Count > 0)
+        {
+            newKeys = CreateListResult(appSettings, keys, isJson).ToList();
+            List<string> newAppSettings = new List<string>();
+            for (int i = 0; i < newKeys.Count; i++)
+                newAppSettings.Add($"\t\t{newKeys.ElementAt(i)}{(isJson ? ',' : "")}");
+
+            newLines = lines.Take(startAppSettings + 1).ToList();
+            newLines.AddRange(newAppSettings);
+
+            var linesAfter = lines.Skip(startAppSettings + 1).ToList();
+            newLines.AddRange(linesAfter);
+        }
+        else
+            newLines = lines;
 
         File.WriteAllLines(filePath, newLines);
     }
