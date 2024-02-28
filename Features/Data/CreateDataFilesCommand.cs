@@ -1,5 +1,6 @@
 ﻿using config.Features._Shared;
 using config.Transaction;
+using config.Utils;
 using config.Utils.Extensions;
 using config.Utils.Messages;
 
@@ -9,29 +10,25 @@ using Spectre.Console.Cli;
 namespace config.Features.Data;
 internal class CreateDataFilesCommand : Command<BaseSettings>
 {
-    private string _baseDirectory = AppDomain.CurrentDomain.BaseDirectory + "AppData";
-
-    private string _settingsFile = @"\Settings.json";
-
-    private string _databasesFile = @"\Databases.json";
+    private string _baseDirectory = ConfigPathHelper.FolderPath;
 
     public override int Execute(CommandContext context, BaseSettings settings)
     {
         var directoryInfo = CreateFileTRA
             .CreateDirectoryIfNotExistes(_baseDirectory);
 
-        var settingsExists = CreateFileTRA.FileExists(_baseDirectory + _settingsFile);
-        var databasesExists = CreateFileTRA.FileExists(_baseDirectory + _databasesFile);
+        var settingsExists = CreateFileTRA.FileExists(ConfigPathHelper.SettingsPath);
+        var databasesExists = CreateFileTRA.FileExists(ConfigPathHelper.DatabasesPath);
 
         var filesToCreate = new List<string>();
 
         if (!settingsExists)
-            filesToCreate.Add(directoryInfo.FullName + @"\Settings.json");
+            filesToCreate.Add(directoryInfo.FullName + ConfigPathHelper.SettingsFileName);
 
         if (!databasesExists)
-            filesToCreate.Add(directoryInfo.FullName + @"\Databases.json");
+            filesToCreate.Add(directoryInfo.FullName + ConfigPathHelper.DatabasesFileName);
 
-        Array.ForEach(filesToCreate.ToArray(), CreateFile);
+        filesToCreate.ForEach(CreateFile);
 
         if (!settingsExists || !databasesExists)
             new Panel(new Text(FileMsg.INF006, new Style(Color.Green))).Formatted().Write();
