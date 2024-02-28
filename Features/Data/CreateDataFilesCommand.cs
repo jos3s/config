@@ -23,10 +23,10 @@ internal class CreateDataFilesCommand : Command<BaseSettings>
         var filesToCreate = new List<string>();
 
         if (!settingsExists)
-            filesToCreate.Add(directoryInfo.FullName + ConfigPathHelper.SettingsFileName);
+            filesToCreate.Add(directoryInfo.FullName + @"\" + ConfigPathHelper.SettingsFileName);
 
         if (!databasesExists)
-            filesToCreate.Add(directoryInfo.FullName + ConfigPathHelper.DatabasesFileName);
+            filesToCreate.Add(directoryInfo.FullName + @"\" + ConfigPathHelper.DatabasesFileName);
 
         filesToCreate.ForEach(CreateFile);
 
