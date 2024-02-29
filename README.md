@@ -1,6 +1,6 @@
 # Config
 
-![terminal_config](https://github.com/jos3s/config/assets/50359547/14fdfdee-3541-4ad5-adfe-0c16e3d0076b)
+![terminal_config](https://i.imgur.com/mHsJU4i.png)
 
  > Esse programa é um CLI, um Command Line Interface, um programa que roda pelo terminal exclusivamente pelo terminal.
 
@@ -10,30 +10,31 @@ O programa foi desenvolvido com o objetivo de testar a biblioteca Spectre.Consol
 
 ## Tecnologias
 
-- .Net 7
+- .Net 8 e .Net 6
 - [Spectre.Console](https://spectreconsole.net)
 
-## Como Usar
+
+## Como usar 
+
+Para utilizar o projeto é preciso ter as ferramentas SDKs do [.Net](https://dotnet.microsoft.com/pt-br/download). Após isso, execute o seguinte comando:
 
 ```bash
-gh repo clone jos3/config
-
----
-
-git clone https://github.com/jos3s/config.git
-
+dotnet tool install --global Ulisses.Config
 ```
 
-Abra a pasta do projeto e execute o comando no terminal para executar o pograma e exibir a ajuda.
+Com isso já deve ter a ferramenta disponível para uso no seu terminal. Use o comando a seguir para obter a ajuda.
 
 ```bash
-dotnet run -- -h
+config -h 
 ```
 
-## Como contribuir
+## Como Contribuir
 
-Para contribuir com o projeto, você pode solicitar alguma correção ou novo recurso usando as **issues** que pode levar 
+Para contribuir com o projeto, você pode fazer uma sugestão para ser desenvolvida ou desenvolver você mesmo essa melhoria. Para sugerir 
+utilize as **issues** para informar qual errou encontrou ou uma melhoria que gostaria que fosse implementada no app, tal sugestão pode levar 
 a um **pull requests** para o desenvolvimento do que foi discutido na **issue**. Leia mais [aqui.](./CONTRIBUTING.md)
+
+
 
 ## Licença
 Direitos Autorais © José Ulisses Silva Macedo Oliveira

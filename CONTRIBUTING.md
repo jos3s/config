@@ -8,6 +8,8 @@ um problema que você encontrou durante o uso, a segunda é desenvolver alguma cor
 ## Desejo apenas sugerir uma melhoria ou novo recurso:
 
 - Crie uma **issue** bem descritiva sobre essa melhoria ou sobre a sua ideia para um novo recurso.
+
+
 ## Desejo adicionar ou corrigir alguma coisa no código ou documentação:
 
 - Primeiro crie uma **issue** bem detalhada com a sua ideia para que ela possa ser debatida e definida para qual escopo se encaixa (feature, improvement, bug, docs...)
