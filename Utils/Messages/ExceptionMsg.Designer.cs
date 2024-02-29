@@ -68,5 +68,14 @@ namespace config.Utils.Messages {
                 return ResourceManager.GetString("EXC0001", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Specified path does not exist: {0}.
+        /// </summary>
+        internal static string EXC0002 {
+            get {
+                return ResourceManager.GetString("EXC0002", resourceCulture);
+            }
+        }
     }
 }

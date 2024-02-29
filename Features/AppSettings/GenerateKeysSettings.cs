@@ -24,4 +24,13 @@ internal class GenerateKeysSettings : BaseSettings
 
     [CommandOption("-e| --export <PATH>")]
     public string? ExportPath { get; set; }
+
+    [CommandOption("--search <PATH>")]
+    [Description("Directory to search appsettings.json or .config")]
+    public string SearchDirectory { get; set; }
+
+    [CommandOption("-o|--overwrite")]
+    [DefaultValue(false)]
+    [Description("Overwrite the values of app settings")]
+    public bool Overwrite { get; set; }
 }

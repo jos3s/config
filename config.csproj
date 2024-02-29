@@ -2,9 +2,18 @@
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>net8.0; net6.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<Version>0.0.4</Version>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>config</ToolCommandName>
+		<PackageOutputPath>./nupkg</PackageOutputPath>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>Ulisses.Config</PackageId>
+		<Authors>José Ulisses S. Macedo Oliveira</Authors>
+		<RepositoryUrl>https://github.com/jos3s/config/</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -89,6 +98,14 @@
 			<Generator>PublicResXFileCodeGenerator</Generator>
 			<LastGenOutput>DatabasesMsg.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="nupkg\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include=".\README.md" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 </Project>
