@@ -1,5 +1,8 @@
 # Config
 
+
+_[![Ulisses.Config NuGet Version](https://img.shields.io/nuget/v/Ulisses.Config.svg?style=for-the-badge&label=NuGet%3A%20Ulisses.Config)](https://www.nuget.org/packages/Ulisses.Config)_ 
+
 ![terminal_config](https://i.imgur.com/mHsJU4i.png)
 
  > Esse programa é um CLI, um Command Line Interface, um programa que roda pelo terminal exclusivamente pelo terminal.
