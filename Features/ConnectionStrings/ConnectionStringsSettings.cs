@@ -35,7 +35,7 @@ internal class ConnectionStringsSettings : BaseSettings
     public string? ExportPath { get; set; }
 
     [CommandOption("--search <PATH>")]
-    [Description("Directory to search appsettings.json")]
+    [Description("Directory to search appsettings.json or .config")]
     public string SearchDirectory { get; set; } = string.Empty;
 
     [CommandOption("-o|--overwrite")]
